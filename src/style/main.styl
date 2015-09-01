@@ -1,0 +1,30 @@
+/*======================================================================
+    MIXINS & EXTENDS
+======================================================================*/
+@import "../../node_modules/stylus-reset"
+@import "../../node_modules/brindille-stylus-extends"
+
+/*======================================================================
+    BASE
+======================================================================*/
+@import "./config/**/*"
+reset()
+
+html
+  @extend .full-size
+  background black
+  color default-color
+  overflow-x hidden
+  overflow-y scroll
+
+body
+  @extend .full-size
+
+#view
+  @extend .full-size
+  padding gutter-top gutter-right gutter-bottom gutter-left
+
+/*======================================================================
+    COMPONENTS
+======================================================================*/
+@import "./components/**/*"

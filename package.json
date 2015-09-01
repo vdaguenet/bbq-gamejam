@@ -1,0 +1,57 @@
+{
+  "name": "bbq-gamejam",
+  "version": "1.0.0",
+  "description": "Our game for the BBQ GameJam 2015",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npm run dev & npm run server",
+    "dev": "webpack -d --watch",
+    "server": "webpack-dev-server --content-base public/ --hot",
+    "prod": "npm run clean && webpack -p --progress",
+    "clean": "find ./public/build -name \"*.map\" -type f -delete"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vdaguenet/bbq-gamejam.git"
+  },
+  "author": "Valentin Daguenet <valentin.daguenet@gmail.com> (http://vdaguenet.fr)",
+  "contributors": [
+    {
+      "name": "Soufiane Lasri",
+      "email": "hello@soufianelasri.com"
+    },
+    {
+      "name": "Madjid Taha",
+      "email": "contact@madjidtaha.fr"
+    },
+    {
+      "name": "Mathis Biabiany",
+      "email": "mathis.biabiany@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vdaguenet/bbq-gamejam/issues"
+  },
+  "homepage": "https://github.com/vdaguenet/bbq-gamejam",
+  "devDependencies": {
+    "autoprefixer-core": "^5.2.1",
+    "autoprefixer-stylus": "^0.7.1",
+    "babel-core": "^5.8.23",
+    "babel-loader": "^5.3.2",
+    "babel-runtime": "^5.8.20",
+    "brindille-stylus-extends": "0.0.2",
+    "css-loader": "^0.16.0",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "stylus-loader": "^1.2.1",
+    "stylus-reset": "0.0.1",
+    "webpack": "^1.12.0",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "dependencies": {
+    "component-emitter": "^1.2.0",
+    "dom-event": "0.0.5",
+    "domready": "^1.0.8",
+    "lodash.bindall": "^3.1.0"
+  }
+}

@@ -1,0 +1,6 @@
+*.log
+.DS_Store
+node_modules/
+public/build/*.js
+public/build/*.map
+public/build/*.css
