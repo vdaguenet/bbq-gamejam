@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run dev & npm run server",
     "dev": "webpack -d --watch",
-    "server": "webpack-dev-server --content-base public/ --hot",
+    "server": "webpack-dev-server --content-base public/ --hot --port 3000",
     "prod": "npm run clean && webpack -p --progress",
     "clean": "find ./public/build -name \"*.map\" -type f -delete"
   },
