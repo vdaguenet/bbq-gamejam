@@ -9,7 +9,7 @@ Our game for the BBQ GameJam 2015
 npm start
 ```
 
-It will build js and css files, watch them and serve the build at [localhost:8080](http://localhost:8080).
+It will build js and css files, watch them and serve the build at [localhost:3000](http://localhost:3000).
 
 ## prod
 
