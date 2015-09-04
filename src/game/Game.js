@@ -7,6 +7,5 @@ export default class Game {
 
   start() {
     console.log('Game - start');
-    alert('Let play together!!!!');
   }
 }

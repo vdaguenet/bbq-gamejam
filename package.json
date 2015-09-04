@@ -52,6 +52,7 @@
     "component-emitter": "^1.2.0",
     "dom-event": "0.0.5",
     "domready": "^1.0.8",
-    "lodash.bindall": "^3.1.0"
+    "lodash.bindall": "^3.1.0",
+    "raf": "^3.1.0"
   }
 }
