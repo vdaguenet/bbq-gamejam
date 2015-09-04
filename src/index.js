@@ -22,4 +22,5 @@ function bindEvents () {
 
 function startGame () {
   Mediator.emit('game:start');
+  game.start();
 }
