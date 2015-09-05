@@ -20,7 +20,7 @@ export default class AbstractEnnemy extends PIXI.Sprite {
     this.currentTile = options.currentTile;
     this.id = options.id;
     this.deletable = false;
-    this.velocity = 10;
+    this.velocity = 0;
   }
 
   update() {
