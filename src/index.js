@@ -9,8 +9,12 @@ import Game from './game/Game';
 Game.appendTo(document.body);
 
 Loader.addTextures([
-  { id: 'grass', path: '/assets/images/textures/grass.jpg' },
-  { id: 'ennemy', path: '/assets/images/textures/ennemy.png' },
+  { id: 'square', path: '/assets/images/textures/square.png' },
+  { id: 'squareDeco', path: '/assets/images/textures/squareDeco.png' },
+  { id: 'path', path: '/assets/images/textures/path.png' },
+  { id: 'ennemy_front', path: '/assets/images/textures/ennemy_front.png' },
+  { id: 'ennemy_back', path: '/assets/images/textures/ennemy_back.png' },
+  { id: 'ennemy_right', path: '/assets/images/textures/ennemy_right.png' },
 ]);
 
 domready(() => {

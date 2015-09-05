@@ -10,7 +10,7 @@ export default class Ennemy extends AbstractEnnemy {
 
   constructor(options) {
     super({
-      texture: Loader.getTexture('ennemy'),
+      texture: Loader.getTexture('ennemy_right'),
       stats: {
         minAttack: 3,
         maxAttack: 4,
@@ -20,6 +20,7 @@ export default class Ennemy extends AbstractEnnemy {
       id: options.id,
       currentTile: options.currentTile,
     });
+    this.anchor = {x: 0, y: 0.3};
     this.velocity = 10;
     this.side = options.side;
     this.direction = 'right';
@@ -63,20 +64,24 @@ export default class Ennemy extends AbstractEnnemy {
   findDirection() {
     if (this.direction !== 'bottom' && tileIsWalkable(this.currentTile.x, this.currentTile.y - 1)) {
       this.direction = 'top';
+      this.texture = Loader.getTexture('ennemy_back');
       return;
     }
 
     if (this.direction !== 'top' && tileIsWalkable(this.currentTile.x, this.currentTile.y + 1)) {
       this.direction = 'bottom';
+      this.texture = Loader.getTexture('ennemy_front');
       return;
     }
 
     if (tileIsWalkable(this.currentTile.x + 1, this.currentTile.y)) {
       this.direction = 'right';
+      this.texture = Loader.getTexture('ennemy_right');
       return;
     }
 
     this.direction = '';
+    this.texture = Loader.getTexture('ennemy_right');
   }
 
   fight() {

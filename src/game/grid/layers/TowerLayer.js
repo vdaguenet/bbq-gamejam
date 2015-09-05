@@ -20,4 +20,8 @@ export default class TowerLayer extends PIXI.Container {
     // TODO Trouver la case correspondante au X, Y passé en paramètre et addChild la Tower correspondante
 
   }
+
+  addBase() {
+
+  }
 }
