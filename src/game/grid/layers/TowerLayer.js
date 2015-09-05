@@ -10,6 +10,7 @@ export default class TowerLayer extends PIXI.Container {
     this.tileSize = tileSize;
     this.addBase(width, height);
     this.towers = [];
+    this.canvas;
     this.stage = stage;
     this.isPlacing = false
   }
@@ -20,37 +21,54 @@ export default class TowerLayer extends PIXI.Container {
    * @param {Object} point x y
    */
   addTower(tower, point) {
-
+    this.canvas = document.getElementsByTagName('canvas');
     this.isPlacing = true;
     // create a texture from an image path
-    const that = this;
     const texture = PIXI.Texture.fromImage('assets/images/test.jpg');
     // create a new Sprite using the texture
     const towerLayer = new PIXI.Sprite(texture);
     towerLayer.position.x = point.x;
     towerLayer.position.y = point.y;
-    console.log(this);
 
     this.stage.addChild(towerLayer);
     // Pas possible avec un on stage ?
-    on(document, 'mousemove', function(e) {
+    on(this.canvas[0], 'mousemove', (e) => {
       console.log('test');
-      that.onMouseMove(e, towerLayer);
+      this.onMouseMove(e, towerLayer);
     });
 
-    on(document, 'click', function(e) {
+    on(this.canvas[0], 'click', (e) => {
       console.log('test2');
-      that.onClick(e, towerLayer);
+      this.placeTower(e, towerLayer);
     });
     // TODO Trouver la case correspondante au X, Y passé en paramètre et addChild la Tower correspondante
   }
 
   placeTower(e, tower) {
-    let xPosition = this.stage.width - e.clientX;
-    let yPosition = this.stage.height - e.clientY;
-    console.log(this.stage);
-    console.log(e);
-    console.log(tower);
+    let x;
+    let y;
+    console.log(e.clientX);
+    const xPosition = e.clientX;
+    const yPosition = e.clientY;
+
+    if ((xPosition - Math.floor(xPosition / 100) * 100) >= 50) {
+      x = (Math.floor(xPosition / 100) * 100) + 50;
+    }
+    else {
+      x = (Math.floor(xPosition / 100) * 100);
+    }
+
+    if ((yPosition - Math.floor(yPosition / 100) * 100) >= 50) {
+      y = (Math.floor(yPosition / 100) * 100) + 50;
+    }
+    else {
+      y = (Math.floor(yPosition / 100) * 100);
+    }
+
+    tower.position.x = x;
+    tower.position.y = y;
+
+    this.isPlacing = false;
   }
 
   addBase() {
@@ -58,12 +76,9 @@ export default class TowerLayer extends PIXI.Container {
   }
 
   onMouseMove(e, tower) {
-    console.log(e);
-    tower.position.x = e.x - (tower.width / 2);
-    tower.position.y = e.y - (tower.height / 2);
-  }
-
-  onClick(e, tower) {
-    this.placeTower(e, tower);
+    if (this.isPlacing) {
+      tower.position.x = e.x - (tower.width / 2);
+      tower.position.y = e.y - (tower.height / 2);
+    }
   }
 }
