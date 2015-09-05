@@ -1,13 +1,16 @@
+import PIXI from 'pixi.js';
+// import bindAll from 'lodash.bindAll';
 import Bullet from './Bullet';
 
 /**
  * AbstractTower class
  * Will be extended by each Tower
  */
-export default class AbstractTower {
+export default class AbstractTower extends PIXI.Sprite {
 
   constructor(options) {
 
+    super();
     /**
      * Stats object contain all stats of the instance Tower
      * @type {object} attack

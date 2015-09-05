@@ -5,6 +5,8 @@ import Enemy from './entities/Ennemy';
 import Player from './Player';
 import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
+import Chef from './entities/tower/Chef.js';
+import TowerLayer from './grid/layers/TowerLayer';
 
 export default class Game {
   constructor(width, height) {
@@ -18,6 +20,9 @@ export default class Game {
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();
+    this.mouseX;
+    this.mouseY;
+
     this.enemies = [];
     this.backgroundLayer = undefined;
   }
@@ -31,7 +36,8 @@ export default class Game {
 
   start(pseudo) {
     console.log('Game - start');
-    Player.setPseudo(pseudo);
+    this.player = new Player();
+    this.player.setPseudo(pseudo);
     console.log('Let\'s go ' + pseudo);
     this.diver = new Diver('veggie');
 
@@ -40,7 +46,9 @@ export default class Game {
 
   addLayers() {
     this.backgroundLayer = new Layer(this.width, this.height, 50, 50);
-    this.stage.addChild(this.backgroundLayer);
+    this.towerLayer = new TowerLayer(this.width, this.height, 50, 50);
+    this.stage.addChildAt(this.backgroundLayer, 0);
+    this.stage.addChildAt(this.towerLayer, 1);
   }
 
   populateEnemies() {
@@ -49,18 +57,36 @@ export default class Game {
     }
   }
 
+  addTower() {
+    const options = {
+      side: 'side',
+    };
+    this.player.addTower(new Chef(options));
+  }
+
+  dragTower() {
+
+  }
+
+  mousemove(x, y) {
+    this.mouseX = x;
+    this.mouseY = y;
+  }
+
   update() {
     raf(this.update);
 
     // TODO: update all the entities
 
-    this.checkCollision(Player.towers, this.enemies);
+    this.checkCollision(Player.towers);
     this.render();
   }
 
-  checkCollision(towers, enemies) {
+  checkCollision(towers) {
+    if (!towers || towers.length <= 0) return;
+
     towers.foreEach((tower) => {
-      enemies.forEach((enemy) => {
+      this.enemies.forEach((enemy) => {
         tower.bullets.forEach((bullet) => {
           if (bullet.x >= enemy.x
             && bullet.x <= enemy.x + enemy.width

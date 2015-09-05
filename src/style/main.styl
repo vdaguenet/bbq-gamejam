@@ -29,22 +29,26 @@ body
 
 canvas
   display block
-  margin 0 auto
-  
+  // margin 0 auto
 
-/*======================================================================
+
+/*----------------------------------------------------------------------
     HOME
-======================================================================*/
+----------------------------------------------------------------------*/
+
+.step
+  display none
+  &.active
+    display block
 
 .pseudo.error
   border 1px solid red
-  
+
 .error-message
   color red
   display none
-  
-.error-message.active
-  display block
+  &.active
+    display block
 
 /*----------------------------------------------------------------------
     COMPONENTS
