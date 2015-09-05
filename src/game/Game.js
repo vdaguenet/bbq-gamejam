@@ -1,11 +1,8 @@
 import bindAll from 'lodash.bindAll';
 import raf from 'raf';
-<<<<<<< HEAD
 import Diver from './entities/tower/Diver';
-=======
 import Player from './Player';
 import PIXI from 'pixi.js';
->>>>>>> a412e3c2e10bb21ea95f833e08ee36a5e7b54095
 
 export default class Game {
   constructor(width, height) {
