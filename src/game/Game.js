@@ -54,7 +54,25 @@ export default class Game {
 
     // TODO: update all the entities
 
+    this.checkCollision(Player.towers, this.enemies);
     this.render();
+  }
+
+  checkCollision(towers, enemies) {
+    towers.foreEach((tower) => {
+      enemies.forEach((enemy) => {
+        tower.bullets.forEach((bullet) => {
+          if (bullet.x >= enemy.x
+            && bullet.x <= enemy.x + enemy.width
+            && bullet.y >= enemy.y
+            && bullet.y <= enemy.y + enemy.height) {
+            bullet.deletable = true;
+            enemy.deletable = true;
+            // TODO add points ?
+          }
+        });
+      });
+    });
   }
 
   render() {

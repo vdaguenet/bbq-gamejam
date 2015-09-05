@@ -17,6 +17,7 @@ export default class AbstractEnnemy {
     this.currentTile = undefined;
     this.id = options.id;
     this.position = options.position || { x: 0, y: 0 };
+    this.deletable = false;
   }
 
   update() {

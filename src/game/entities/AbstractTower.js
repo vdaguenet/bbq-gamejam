@@ -62,6 +62,8 @@ export default class AbstractTower {
 
   addBullet() {
     // TODO add vector to the bullet
+    // TODO setup the shot with the precision parameter
+    // TODO setup the shot with the fireRate parameter
     this.bullets.push(new Bullet(this.x, this.y, this.vector));
   }
 
