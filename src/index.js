@@ -5,11 +5,12 @@ import { on } from 'dom-event';
 import Mediator from './utils/Mediator';
 import Game from './game/Game';
 
-const game = new Game();
+const game = new Game(900, 500);
 
 domready(() => {
-	console.log('Hello world!');
-	bindEvents();
+  console.log('Hello world!');
+  game.appendTo(document.body);
+  bindEvents();
 });
 
 function bindEvents() {
