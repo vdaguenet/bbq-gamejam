@@ -1,4 +1,4 @@
-import Bullet from 'Bullet';
+import Bullet from './Bullet';
 
 /**
  * AbstractTower class
@@ -39,10 +39,10 @@ export default class AbstractTower {
     this.currentTargets.push(target);
   }
 
-  attack(target) {
+  attack(target, vector) {
     if (Math.random < this.stats.precision) {
       target.hp -= this.stats.attack;
-      this.shot(target.position);
+      this.addBullet(target.position, vector);
     }
     else {
       console.log('Miss');
@@ -55,12 +55,13 @@ export default class AbstractTower {
 
   applyAttack(target) {
     if (this.beforeAttack(target)) {
-      this.attack(target);
+      let vector = this.getVector(target);
+      this.attack(target, vector);
       this.afterAttack(target);
     }
   }
 
-  addBullet() {
+  addBullet(vector) {
     // TODO add vector to the bullet
     // TODO setup the shot with the precision parameter
     // TODO setup the shot with the fireRate parameter
@@ -71,6 +72,20 @@ export default class AbstractTower {
     this.bullets = this.bullets.filter((bullets) => {
       return !bullets.deletable;
     });
+  }
+
+  getDistance(target) {
+    let x = this.position.x - (target.x + target.width / 2);
+    let y = this.position.y - (target.y + target.height / 2);
+
+    return Math.sqrt(x * x + y * y);
+  }
+
+  getVector(target) {
+    let x = this.position.x - (target.x + target.width / 2);
+    let y = this.position.y - (target.y + target.height / 2);
+
+    return { 'x': x, 'y': y };
   }
 
 }
