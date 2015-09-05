@@ -14,18 +14,20 @@ domready(() => {
 });
 
 function bindEvents() {
-	const btnStart = document.querySelector('.ButtonStart');
-
-	on(btnStart, 'click', startGame);
+  const btnStart = document.querySelector('.ButtonStart');
+  on(btnStart, 'click', startGame);
 }
 
 function startGame() {
-	let pseudo = document.getElementById('pseudo').value;
+  const pseudo = document.getElementById('pseudo');
+  const error = document.querySelector('.error-message');
 
-	if (pseudo.length > 0) {
-		Mediator.emit('game:start');
-		game.start(pseudo);
-	} else {
-		alert('Sans pseudo, jouer, tu ne peux...')
-	}
+  if (pseudo.value.length > 0) {
+    Mediator.emit('game:start');
+    game.start(pseudo.value);
+  }
+  else {
+    pseudo.setAttribute('class', 'error');
+    error.setAttribute('class', 'error-message active');
+  }
 }
