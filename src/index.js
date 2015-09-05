@@ -3,9 +3,9 @@ import domready from 'domready';
 import { on } from 'dom-event';
 import Loader from './utils/Loader';
 import Mediator from './utils/Mediator';
-import Game from './game/Game';
 
-const game = new Game();
+import game from './game/Game';
+// const game = new Game();
 game.appendTo(document.body);
 
 Loader.addTextures([
