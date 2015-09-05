@@ -14,9 +14,10 @@ export default class AbstractTower {
      * @type {number} radius
      * @type {number} maxTarget
      */
-    this.id = options.id;
     this.stats = options.stats;
-    this.currentTarget = [];
+
+    this.id = options.id;
+    this.currentTargets = [];
     this.position = options.position || { x: 0, y: 0 };
   }
 
@@ -24,20 +25,32 @@ export default class AbstractTower {
     console.warn('You should override update method on', Object.getPrototypeOf(this));
   }
 
-  attack(target) {
-
-    if (this.currentTarget.length >= this.stats.maxTarget) {
-      return;
+  beforeAttack(target) {
+    if (this.currentTargets.length >= this.stats.maxTarget) {
+      return false;
     }
 
-    this.currentTarget.push(target);
+    this.currentTargets.push(target);
+  }
 
+  attack(target) {
     if (Math.random < this.stats.precision) {
       target.hp -= this.stats.attack;
     }
     else {
       console.log('Miss');
     }
-
   }
+
+  afterAttack(target) {
+    this.currentTargets = this.currentTargets.splice(this.currentTargets.indexOf(target), 1);
+  }
+
+  applyAttack(target) {
+    if (this.beforeAttack(target)) {
+      this.attack(target);
+      this.afterAttack(target);
+    }
+  }
+
 }
