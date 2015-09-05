@@ -9,11 +9,18 @@
 
   <div id="view">
     <h1>Tower Defense !</h1>
-	
-	<p class="error-message">Sans pseudo, jouer, tu ne peux...</p>
-    <input id="pseudo" type="text" placeholder="pseudo"></input>
 
-    <a class="ButtonStart">Start</a>
+    <div class="step step-one active">
+      <p class="error-message">Sans pseudo, jouer, tu ne peux...</p>
+      <input id="pseudo" type="text" placeholder="pseudo"></input>
+
+      <a class="ButtonStart">Start</a>
+    </div>
+
+    <div class="step step-two">
+      <a class="add-tower">Add a tower</a>
+      <ul class="tower-list"></ul>
+    </div>
   </div>
 
   <script src="./build/main.js"></script>

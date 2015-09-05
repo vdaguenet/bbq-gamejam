@@ -5,6 +5,7 @@ import Enemy from './entities/Ennemy';
 import Player from './Player';
 import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
+import Chef from './entities/tower/Chef.js';
 import TowerLayer from './grid/layers/TowerLayer';
 import level from './levels/level1.json';
 
@@ -21,6 +22,9 @@ export default class Game {
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();
+    this.mouseX;
+    this.mouseY;
+
     this.enemies = [];
     this.backgroundLayer = undefined;
   }
@@ -34,7 +38,8 @@ export default class Game {
 
   start(pseudo) {
     console.log('Game - start');
-    Player.setPseudo(pseudo);
+    this.player = new Player();
+    this.player.setPseudo(pseudo);
     console.log('Let\'s go ' + pseudo);
     this.diver = new Diver('veggie');
 
@@ -53,6 +58,22 @@ export default class Game {
     for (let i = 0; i < 1; i++) {
       this.enemies.push(new Enemy({id: 'test', side: 'meat'}));
     }
+  }
+
+  addTower() {
+    const options = {
+      side: 'side',
+    };
+    this.player.addTower(new Chef(options));
+  }
+
+  dragTower() {
+
+  }
+
+  mousemove(x, y) {
+    this.mouseX = x;
+    this.mouseY = y;
   }
 
   update() {

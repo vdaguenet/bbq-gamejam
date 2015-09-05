@@ -42,10 +42,10 @@ export default class AbstractTower extends PIXI.Sprite {
     this.currentTargets.push(target);
   }
 
-  attack(target) {
+  attack(target, vector) {
     if (Math.random < this.stats.precision) {
       target.hp -= this.stats.attack;
-      this.shot(target.position);
+      this.addBullet(target.position, vector);
     }
     else {
       console.log('Miss');
@@ -58,22 +58,36 @@ export default class AbstractTower extends PIXI.Sprite {
 
   applyAttack(target) {
     if (this.beforeAttack(target)) {
-      this.attack(target);
+      this.vector = this.getVector(target);
+      this.attack(target, this.vector);
       this.afterAttack(target);
     }
   }
 
-  addBullet() {
-    // TODO add vector to the bullet
+  addBullet(vector) {
     // TODO setup the shot with the precision parameter
     // TODO setup the shot with the fireRate parameter
-    this.bullets.push(new Bullet(this.x, this.y, this.vector));
+    this.bullets.push(new Bullet(this.x, this.y, vector));
   }
 
   deleteOldBullets() {
     this.bullets = this.bullets.filter((bullets) => {
       return !bullets.deletable;
     });
+  }
+
+  getDistance(target) {
+    const x = this.position.x - (target.x + target.width / 2);
+    const y = this.position.y - (target.y + target.height / 2);
+
+    return Math.sqrt(x * x + y * y);
+  }
+
+  getVector(target) {
+    const x = this.position.x - (target.x + target.width / 2);
+    const y = this.position.y - (target.y + target.height / 2);
+
+    return { 'x': x, 'y': y };
   }
 
 }
