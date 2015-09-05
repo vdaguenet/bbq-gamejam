@@ -1,14 +1,16 @@
 import bindAll from 'lodash.bindAll';
 import raf from 'raf';
+import Diver from './entities/tower/Diver';
+import Player from './Player';
 import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
 
 export default class Game {
   constructor(width, height) {
     bindAll(this, 'update');
-
     console.log('Game - construct');
 
+    this.player;
     this.width = width;
     this.height = height;
     this.renderer = PIXI.autoDetectRenderer(width, height, {
@@ -25,8 +27,15 @@ export default class Game {
     this.addLayers();
   }
 
-  start() {
+  createPlayer(pseudo) {
+    this.player = new Player(pseudo);
+  }
+
+  start(pseudo) {
     console.log('Game - start');
+    console.log('Let\'s go ' + pseudo);
+    this.diver = new Diver('veggie');
+    this.createPlayer(pseudo);
 
     this.update();
   }

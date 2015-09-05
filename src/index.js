@@ -19,7 +19,6 @@ domready(() => {
 
 function bindEvents() {
   const btnStart = document.querySelector('.ButtonStart');
-
   on(btnStart, 'click', startGame);
 
   Mediator.on('loader:complete', () => {
@@ -28,6 +27,15 @@ function bindEvents() {
 }
 
 function startGame() {
-  Mediator.emit('game:start');
-  game.start();
+  const pseudo = document.getElementById('pseudo');
+  const error = document.querySelector('.error-message');
+
+  if (pseudo.value.length > 0) {
+    Mediator.emit('game:start');
+    game.start(pseudo.value);
+  }
+  else {
+    pseudo.setAttribute('class', 'error');
+    error.setAttribute('class', 'error-message active');
+  }
 }
