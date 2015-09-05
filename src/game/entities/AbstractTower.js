@@ -1,11 +1,16 @@
+import PIXI from 'pixi.js';
+// import bindAll from 'lodash.bindAll';
+import Bullet from 'Bullet';
+
 /**
  * AbstractTower class
  * Will be extended by each Tower
  */
-export default class AbstractTower {
+export default class AbstractTower extends PIXI.Sprite {
 
   constructor(options) {
 
+    super();
     /**
      * Stats object contain all stats of the instance Tower
      * @type {object} attack
@@ -19,10 +24,14 @@ export default class AbstractTower {
     this.id = options.id;
     this.currentTargets = [];
     this.position = options.position || { x: 0, y: 0 };
+    this.bullets = [];
+    this.vector = options.vector || { x: 0, y: 0 };
   }
 
   update() {
     console.warn('You should override update method on', Object.getPrototypeOf(this));
+
+    this.deleteOldBullets();
   }
 
   beforeAttack(target) {
@@ -36,6 +45,7 @@ export default class AbstractTower {
   attack(target) {
     if (Math.random < this.stats.precision) {
       target.hp -= this.stats.attack;
+      this.shot(target.position);
     }
     else {
       console.log('Miss');
@@ -51,6 +61,19 @@ export default class AbstractTower {
       this.attack(target);
       this.afterAttack(target);
     }
+  }
+
+  addBullet() {
+    // TODO add vector to the bullet
+    // TODO setup the shot with the precision parameter
+    // TODO setup the shot with the fireRate parameter
+    this.bullets.push(new Bullet(this.x, this.y, this.vector));
+  }
+
+  deleteOldBullets() {
+    this.bullets = this.bullets.filter((bullets) => {
+      return !bullets.deletable;
+    });
   }
 
 }

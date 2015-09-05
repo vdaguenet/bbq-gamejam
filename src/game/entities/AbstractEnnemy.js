@@ -14,9 +14,10 @@ export default class AbstractEnnemy {
      * @type {number} life
      */
     this.stats = options.stats;
-
+    this.currentTile = undefined;
     this.id = options.id;
     this.position = options.position || { x: 0, y: 0 };
+    this.deletable = false;
   }
 
   update() {

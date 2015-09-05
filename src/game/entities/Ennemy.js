@@ -1,4 +1,4 @@
-import AbstractEnnemy from '../AbstractEnnemy';
+import AbstractEnnemy from './AbstractEnnemy';
 /**
  * Ennemy class
  * Weaker tower
@@ -11,12 +11,12 @@ export default class Ennemy extends AbstractEnnemy {
 
     super({
       stats: {
-        minAttack : 3,
-        maxAttack : 4,
+        minAttack: 3,
+        maxAttack: 4,
         precision: 0.7,
         life: 8,
       },
-      id: options,
+      id: options.id,
     });
     // TODO define side;
     this.side = options.side;

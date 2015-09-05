@@ -17,9 +17,9 @@ export default class Chef extends AbstractTower {
         radius: 1,
         maxTarget: 2,
       },
-      id: options,
+      id: options.id,
     });
-    // TODO define side;
+    // TODO define side
     this.side = options.side;
 
   }

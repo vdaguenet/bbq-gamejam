@@ -8,9 +8,9 @@ export default class Base {
 
     console.log('Base -> constructor');
 
-    this.life : 20;
+    this.life = 20;
 
-    // TODO define side;
+    // TODO define side
     this.side = options.side;
 
   }

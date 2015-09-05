@@ -17,9 +17,9 @@ export default class CommisChef extends AbstractTower {
         radius: 1,
         maxTarget: 1,
       },
-      id: options,
+      id: options.id,
     });
-    // TODO define side;
+    // TODO define side
     this.side = options.side;
 
   }
