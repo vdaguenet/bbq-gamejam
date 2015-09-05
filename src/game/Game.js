@@ -4,6 +4,7 @@ import Diver from './entities/tower/Diver';
 import Player from './Player';
 import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
+import Chef from './entities/tower/Chef.js';
 
 export default class Game {
   constructor(width, height) {
@@ -17,6 +18,8 @@ export default class Game {
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();
+    this.mouseX;
+    this.mouseY;
 
     this.backgroundLayer = undefined;
   }
@@ -27,13 +30,10 @@ export default class Game {
     this.addLayers();
   }
 
-  createPlayer(pseudo) {
-    this.player = new Player(pseudo);
-  }
-
   start(pseudo) {
     console.log('Game - start');
-    Player.setPseudo(pseudo);
+    this.player = new Player();
+    this.player.setPseudo(pseudo);
     console.log('Let\'s go ' + pseudo);
     this.diver = new Diver('veggie');
 
@@ -43,6 +43,22 @@ export default class Game {
   addLayers() {
     this.backgroundLayer = new Layer(this.width, this.height, 50, 50);
     this.stage.addChild(this.backgroundLayer);
+  }
+
+  addTower() {
+    const options = {
+      side: 'side',
+    };
+    this.player.addTower(new Chef(options));
+  }
+
+  dragTower() {
+
+  }
+
+  mousemove(x, y) {
+    this.mouseX = x;
+    this.mouseY = y;
   }
 
   update() {

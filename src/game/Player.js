@@ -1,8 +1,9 @@
-class Player {
+export default class Player {
   constructor() {
     this.pseudo = '';
     this.cash = 10;
     this.towers = [];
+    this.list = document.querySelector('.tower-list');
   }
 
   setPseudo(pseudo) {
@@ -19,6 +20,9 @@ class Player {
 
   addTower(tower) {
     this.towers.push(tower);
+    const li = document.createElement('li');
+    li.innerHTML = '<a class="tower" href="javascript:void(0)">1 tour</a>';
+    this.list.appendChild(li);
   }
 
   removeTower(id) {
@@ -30,4 +34,3 @@ class Player {
   }
 }
 
-export default new Player();
