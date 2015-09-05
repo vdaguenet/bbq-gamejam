@@ -5,7 +5,7 @@ import Loader from './utils/Loader';
 import Mediator from './utils/Mediator';
 import Game from './game/Game';
 
-const game = new Game(900, 550);
+const game = new Game();
 game.appendTo(document.body);
 
 Loader.addTextures([

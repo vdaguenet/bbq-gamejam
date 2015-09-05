@@ -9,7 +9,7 @@ import Chef from './entities/tower/Chef.js';
 import TowerLayer from './grid/layers/TowerLayer';
 import level from './levels/level1.json';
 
-export default class Game {
+class Game {
   constructor() {
     bindAll(this, 'update');
     console.log('Game - construct');
@@ -55,7 +55,7 @@ export default class Game {
 
   populateEnemies() {
     for (let i = 0; i < 1; i++) {
-      this.enemies.push(new Enemy({id: 'test', side: 'meat'}));
+      this.enemies.push(new Enemy({ id: 'test', side: 'meat' }));
     }
   }
 
@@ -118,3 +118,5 @@ export default class Game {
     $el.appendChild(this.renderer.view);
   }
 }
+
+export default new Game();
