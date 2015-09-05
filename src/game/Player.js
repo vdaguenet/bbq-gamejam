@@ -1,4 +1,4 @@
-export default class Player {
+class Player {
   constructor(pseudo) {
     this.pseudo = pseudo;
     this.cash = 10;
@@ -25,3 +25,5 @@ export default class Player {
     }
   }
 }
+
+export default new Player();
