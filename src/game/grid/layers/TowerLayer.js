@@ -1,12 +1,13 @@
 import PIXI from 'pixi.js';
-import Loader from 'utils/Loader';
+import Base from 'game/entities/Base';
 
 export default class TowerLayer extends PIXI.Container {
   constructor(width, height, tileSize) {
     super();
 
+    this.base = new Base();
     this.tileSize = tileSize;
-    // this.populate(width, height);
+    this.addBase(width, height);
   }
 
   /**

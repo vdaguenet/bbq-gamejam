@@ -10,7 +10,7 @@ import TowerLayer from './grid/layers/TowerLayer';
 import level from './levels/level1.json';
 import { tileSize } from 'utils/levelUtils';
 
-export default class Game {
+class Game {
   constructor() {
     bindAll(this, 'update');
     console.log('Game - construct');
@@ -24,6 +24,7 @@ export default class Game {
     this.stage = new PIXI.Container();
     this.mouseX;
     this.mouseY;
+    this.currentTowerMoved = false;
 
     this.enemies = [];
     this.backgroundLayer = undefined;
@@ -77,7 +78,23 @@ export default class Game {
   }
 
   dragTower() {
+    // create a texture from an image path
+    const texture = PIXI.Texture.fromImage('assets/images/test.jpg');
+    // create a new Sprite using the texture
+    this.currentTowerMoved = new PIXI.Sprite(texture);
+    this.currentTowerMoved.position.x = this.mouseX;
+    this.currentTowerMoved.position.y = this.mouseY;
 
+    console.log(this.currentTowerMoved);
+
+    this.stage.addChild(this.currentTowerMoved);
+  }
+
+  moveTower(x, y) {
+    if (this.currentTowerMoved) {
+      this.currentTowerMoved.position.x = x - (this.currentTowerMoved.width / 2);
+      this.currentTowerMoved.position.y = y - (this.currentTowerMoved.height / 2);
+    }
   }
 
   mousemove(x, y) {
@@ -141,3 +158,5 @@ export default class Game {
     $el.appendChild(this.renderer.view);
   }
 }
+
+export default new Game();

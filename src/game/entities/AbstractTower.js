@@ -26,11 +26,14 @@ export default class AbstractTower extends PIXI.Sprite {
     this.position = options.position || { x: 0, y: 0 };
     this.bullets = [];
     this.vector = options.vector || { x: 0, y: 0 };
+    this.lastFire = 0;
+
   }
 
   update() {
     console.warn('You should override update method on', Object.getPrototypeOf(this));
 
+    this.applyAttack(this.currentTargets);
     this.deleteOldBullets();
   }
 
@@ -65,9 +68,13 @@ export default class AbstractTower extends PIXI.Sprite {
   }
 
   addBullet(vector) {
-    // TODO setup the shot with the precision parameter
-    // TODO setup the shot with the fireRate parameter
-    this.bullets.push(new Bullet(this.x, this.y, vector));
+    if (Date.now() - this.lastFire > this.fireRate &&
+      Math.random() < this.precision) {
+      // TODO setup the shot with the precision parameter
+      this.bullets.push(new Bullet(this.x, this.y, vector));
+
+      this.lastFire = Date.now();
+    }
   }
 
   deleteOldBullets() {
