@@ -1,26 +1,29 @@
-export default class Player {
+class Player {
   constructor(pseudo) {
     this.pseudo = pseudo;
     this.cash = 10;
     this.towers = [];
-  };
+  }
 
-  addCash(cash){
+  addCash(cash) {
     this.cash += cash;
-  };
+  }
 
-  removeCash(cash){
+  removeCash(cash) {
     this.cash -= cash;
-  };
+  }
 
-  addTower(tower){
+  addTower(tower) {
     this.towers.push(tower);
-  };
+  }
 
-  removeTower(id, tower){
-    for (var i = 0; i < this.towers.length; i++) {
-      if (this.towers[i].id === id)
+  removeTower(id) {
+    for (let i = 0; i < this.towers.length; i++) {
+      if (this.towers[i].id === id) {
         this.towers.splice(i, 1);
-    };
-  };
-};
+      }
+    }
+  }
+}
+
+export default new Player();

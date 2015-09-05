@@ -1,5 +1,4 @@
-BBQ GameJam 2015
-===============
+# BBQ GameJam 2015
 
 Our game for the BBQ GameJam 2015
 
