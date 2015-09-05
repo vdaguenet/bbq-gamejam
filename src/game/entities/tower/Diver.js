@@ -17,6 +17,7 @@ export default class Diver extends AbstractTower {
         cost: 5,
         radius: 1,
         maxTarget: 1,
+        fireRate: 60,
       },
       id: options.id,
       texture: Loader.getTexture('diver'),

@@ -13,11 +13,13 @@ export default class AbstractTower extends PIXI.Sprite {
     super();
     /**
      * Stats object contain all stats of the instance Tower
-     * @type {object} attack
+     * @type {number} attack
      * @type {number} precision
      * @type {number} cost
+     * @type {number} distAttack
      * @type {number} radius
      * @type {number} maxTarget
+     * @type {number} fireRate
      */
     this.stats = options.stats;
 
@@ -68,9 +70,7 @@ export default class AbstractTower extends PIXI.Sprite {
   }
 
   addBullet(vector) {
-    if (Date.now() - this.lastFire > this.fireRate &&
-      Math.random() < this.precision) {
-      // TODO setup the shot with the precision parameter
+    if (Date.now() - this.lastFire > this.stats.fireRate) {
       this.bullets.push(new Bullet(this.x, this.y, vector));
 
       this.lastFire = Date.now();
