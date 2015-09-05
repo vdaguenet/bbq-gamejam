@@ -13,7 +13,7 @@ import TowerLayer from './grid/layers/TowerLayer';
 import level from './levels/level1.json';
 import { tileSize } from 'utils/levelUtils';
 
-export default class Game {
+class Game {
   constructor() {
     bindAll(this, 'update');
     console.log('Game - construct');
@@ -179,3 +179,5 @@ export default class Game {
     $el.appendChild(this.renderer.view);
   }
 }
+
+export default new Game();

@@ -1,7 +1,8 @@
 import AbstractTower from '../AbstractTower';
+import Loader from 'utils/Loader';
 /**
  * Chef class
- * Weaker tower
+ * Medium tower
  */
 export default class Chef extends AbstractTower {
 
@@ -16,8 +17,10 @@ export default class Chef extends AbstractTower {
         cost: 12,
         radius: 1,
         maxTarget: 2,
+        fireRate: 60,
       },
       id: options.id,
+      texture: Loader.getTexture('chef'),
     });
     // TODO define side
     this.side = options.side;

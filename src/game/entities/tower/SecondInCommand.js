@@ -1,7 +1,8 @@
 import AbstractTower from '../AbstractTower';
+import Loader from 'utils/Loader';
 /**
  * SecondInCommand class
- * Weaker tower
+ * Strong tower
  */
 export default class SecondInCommand extends AbstractTower {
 
@@ -17,9 +18,9 @@ export default class SecondInCommand extends AbstractTower {
         radius: 2,
         maxTarget: -1,
         fireRate: 60,
-        shots: [],
       },
       id: options.id,
+      texture: Loader.getTexture('secondInCommand'),
     });
     // TODO define side
     this.side = options.side;

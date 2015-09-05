@@ -13,11 +13,13 @@ export default class AbstractTower extends PIXI.Sprite {
     super();
     /**
      * Stats object contain all stats of the instance Tower
-     * @type {object} attack
+     * @type {number} attack
      * @type {number} precision
      * @type {number} cost
+     * @type {number} distAttack
      * @type {number} radius
      * @type {number} maxTarget
+     * @type {number} fireRate
      */
     this.stats = options.stats;
 
@@ -26,11 +28,14 @@ export default class AbstractTower extends PIXI.Sprite {
     this.position = options.position || { x: 0, y: 0 };
     this.bullets = [];
     this.vector = options.vector || { x: 0, y: 0 };
+    this.lastFire = 0;
+
   }
 
   update() {
     console.warn('You should override update method on', Object.getPrototypeOf(this));
 
+    this.applyAttack(this.currentTargets);
     this.deleteOldBullets();
   }
 
@@ -65,9 +70,11 @@ export default class AbstractTower extends PIXI.Sprite {
   }
 
   addBullet(vector) {
-    // TODO setup the shot with the precision parameter
-    // TODO setup the shot with the fireRate parameter
-    this.bullets.push(new Bullet(this.x, this.y, vector));
+    if (Date.now() - this.lastFire > this.stats.fireRate) {
+      this.bullets.push(new Bullet(this.x, this.y, vector));
+
+      this.lastFire = Date.now();
+    }
   }
 
   deleteOldBullets() {

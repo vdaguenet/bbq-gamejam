@@ -1,3 +1,4 @@
+import Game from '../Game';
 /**
  * Bullet class
  */
@@ -12,9 +13,16 @@ export default class Bullet {
   }
 
   update() {
-    // TODO follow the vector
     // TODO turn deletable to true if bullet pass through screen edges
     this.x += this.vector.x;
     this.y += this.vector.y;
+    this.checkOffScreenPosition();
+  }
+
+  checkOffScreenPosition() {
+    if (this.x < 0 || this.x > Game.width ||
+      this.y < 0 || this.y > Game.width) {
+      this.deletable = true;
+    }
   }
 }
