@@ -11,6 +11,7 @@ Game.appendTo(document.body);
 Loader.addTextures([
   { id: 'grass', path: '/assets/images/textures/grass.jpg' },
   { id: 'ennemy', path: '/assets/images/textures/ennemy.png' },
+  { id: 'base', path: '/assets/images/textures/base.png' },
 ]);
 
 domready(() => {

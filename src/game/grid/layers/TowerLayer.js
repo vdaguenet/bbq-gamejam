@@ -8,10 +8,10 @@ export default class TowerLayer extends PIXI.Container {
 
     this.base = new Base();
     this.tileSize = tileSize;
-    this.addBase(width, height);
+    this.addBase();
     this.towers = [];
     this.stage = stage;
-    this.isPlacing = false
+    this.isPlacing = false;
   }
 
   /**
@@ -23,7 +23,6 @@ export default class TowerLayer extends PIXI.Container {
 
     this.isPlacing = true;
     // create a texture from an image path
-    const that = this;
     const texture = PIXI.Texture.fromImage('assets/images/test.jpg');
     // create a new Sprite using the texture
     const towerLayer = new PIXI.Sprite(texture);
@@ -33,14 +32,14 @@ export default class TowerLayer extends PIXI.Container {
 
     this.stage.addChild(towerLayer);
     // Pas possible avec un on stage ?
-    on(document, 'mousemove', function(e) {
+    on(document, 'mousemove', (e) => {
       console.log('test');
-      that.onMouseMove(e, towerLayer);
+      this.onMouseMove(e, towerLayer);
     });
 
-    on(document, 'click', function(e) {
+    on(document, 'click', (e) => {
       console.log('test2');
-      that.onClick(e, towerLayer);
+      this.onClick(e, towerLayer);
     });
     // TODO Trouver la case correspondante au X, Y passé en paramètre et addChild la Tower correspondante
   }
@@ -55,6 +54,7 @@ export default class TowerLayer extends PIXI.Container {
 
   addBase() {
     // TODO : MADJ
+    this.addChild(this.base);
   }
 
   onMouseMove(e, tower) {

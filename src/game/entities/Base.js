@@ -6,16 +6,19 @@ import Loader from 'utils/Loader';
  */
 export default class Base extends PIXI.Sprite {
 
-  constructor(options) {
+  constructor() {
+    super(Loader.getTexture('base'));
 
-    super(Loader.getTexture('diver'));
+    this.tileSize = 50;
+
+    this.x = 16 * this.tileSize;
+    this.y = 3 * this.tileSize;
+    this.anchor = new PIXI.Point(0, 0);
     console.log('Base -> constructor');
 
     this.life = 20;
 
     // TODO define side
-    //this.side = options.side;
-
   }
 
   update() {
