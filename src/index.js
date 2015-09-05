@@ -4,9 +4,9 @@ import { on } from 'dom-event';
 import Loader from './utils/Loader';
 import Mediator from './utils/Mediator';
 
-import game from './game/Game';
+import Game from './game/Game';
 // const game = new Game();
-game.appendTo(document.body);
+Game.appendTo(document.body);
 
 Loader.addTextures([
   { id: 'grass', path: '/assets/images/textures/grass.jpg' },
@@ -27,7 +27,7 @@ function bindEvents() {
   on(document, 'mousemove', mousemoveHandler);
 
   Mediator.on('loader:complete', () => {
-    game.init();
+    Game.init();
   });
 }
 
@@ -43,7 +43,7 @@ function startGame() {
     Mediator.emit('game:start');
     stepOne.setAttribute('class', 'step-one');
     stepTwo.setAttribute('class', 'step-two active');
-    game.start(pseudo.value);
+    Game.start(pseudo.value);
   }
   else {
     pseudo.setAttribute('class', 'error');
@@ -52,16 +52,16 @@ function startGame() {
 }
 
 function mousemoveHandler(event) {
-  game.mousemove(event.clientX, event.clientY);
-  game.moveTower(event.clientX, event.clientY);
+  Game.mousemove(event.clientX, event.clientY);
+  Game.moveTower(event.clientX, event.clientY);
 }
 
 function addTower() {
-  game.addTower();
+  Game.addTower();
   const btnTower = document.querySelector('.tower');
   on(btnTower, 'click', dragTower);
 }
 
 function dragTower() {
-  game.dragTower();
+  Game.dragTower();
 }
