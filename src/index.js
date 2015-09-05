@@ -24,7 +24,7 @@ domready(() => {
 
 function bindEvents() {
   const btnStart = document.querySelector('.ButtonStart');
-  const btnTowerAdd = document.querySelector('.add-tower');
+  const btnTowerAdd = document.querySelector('.tower');
 
   on(btnStart, 'click', startGame);
   on(btnTowerAdd, 'click', addTower);
@@ -61,9 +61,7 @@ function mousemoveHandler(event) {
 }
 
 function addTower() {
-  Game.addTower();
-  const btnTower = document.querySelector('.tower');
-  on(btnTower, 'click', dragTower);
+  Game.addTower(this);
 }
 
 function dragTower() {

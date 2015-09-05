@@ -1,11 +1,14 @@
 import bindAll from 'lodash.bindAll';
 import raf from 'raf';
 import Diver from './entities/tower/Diver';
+import CommisChef from './entities/tower/CommisChef';
+import MasterChef from './entities/tower/MasterChef';
+import SecondInCommand from './entities/tower/SecondInCommand';
+import Chef from './entities/tower/Chef';
 import Enemy from './entities/Ennemy';
 import Player from './Player';
 import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
-import Chef from './entities/tower/Chef.js';
 import TowerLayer from './grid/layers/TowerLayer';
 import level from './levels/level1.json';
 import { tileSize } from 'utils/levelUtils';
@@ -51,7 +54,7 @@ class Game {
 
   addLayers() {
     this.backgroundLayer = new Layer(this.width, this.height, 50, level);
-    this.towerLayer = new TowerLayer(this.width, this.height, 50);
+    this.towerLayer = new TowerLayer(this.width, this.height, 50, this.stage);
     this.stage.addChildAt(this.backgroundLayer, 0);
     this.stage.addChildAt(this.towerLayer, 1);
   }
@@ -70,11 +73,29 @@ class Game {
     }
   }
 
-  addTower() {
+  addTower(item) {
     const options = {
       side: 'side',
     };
-    this.player.addTower(new Chef(options));
+
+    switch(item.getAttribute('data-tower')) {
+    case 'diver-tower':
+      console.log(this);
+      this.towerLayer.addTower(new Diver(options), { x: this.mouseX, y: this.mouseY });
+      break;
+    case 'clerk-tower':
+      this.towerLayer.addTower(new CommisChef(options), { x: this.mouseX, y: this.mouseY });
+      break;
+    case 'part-tower':
+      this.towerLayer.addTower(new MasterChef(options), { x: this.mouseX, y: this.mouseY });
+      break;
+    case 'second-tower':
+      this.towerLayer.addTower(new SecondInCommand(options), { x: this.mouseX, y: this.mouseY });
+      break;
+    case 'chief-tower':
+      this.towerLayer.addTower(new Chef(options), { x: this.mouseX, y: this.mouseY });
+      break;
+    }
   }
 
   dragTower() {
