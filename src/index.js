@@ -5,20 +5,27 @@ import { on } from 'dom-event';
 import Mediator from './utils/Mediator';
 import Game from './game/Game';
 
-const game = new Game();
+const game = new Game(900, 500);
 
 domready(() => {
   console.log('Hello world!');
+  game.appendTo(document.body);
   bindEvents();
 });
 
 function bindEvents() {
-  const btnStart = document.querySelector('.ButtonStart');
+	const btnStart = document.querySelector('.ButtonStart');
 
-  on(btnStart, 'click', startGame);
+	on(btnStart, 'click', startGame);
 }
 
 function startGame() {
-  Mediator.emit('game:start');
-  game.start();
+	let pseudo = document.getElementById('pseudo').value;
+
+	if (pseudo.length > 0) {
+		Mediator.emit('game:start');
+		game.start(pseudo);
+	} else {
+		alert('Sans pseudo, jouer, tu ne peux...')
+	}
 }
