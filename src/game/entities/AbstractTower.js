@@ -77,17 +77,19 @@ export default class AbstractTower extends PIXI.Sprite {
   }
 
   getDistance(target) {
-    const x = this.position.x - (target.x + target.width / 2);
-    const y = this.position.y - (target.y + target.height / 2);
+    const x = (target.x + target.width / 2) - this.position.x;
+    const y = (target.y + target.height / 2) - this.position.y;
 
     return Math.sqrt(x * x + y * y);
   }
 
   getVector(target) {
-    const x = this.position.x - (target.x + target.width / 2);
-    const y = this.position.y - (target.y + target.height / 2);
+    const x = (target.x + target.width / 2) - this.position.x;
+    const y = (target.y + target.height / 2) - this.position.y;
 
-    return { 'x': x, 'y': y };
+    const length = this.getDistance(target);
+
+    return { 'x': x / length, 'y': y / length };
   }
 
 }
