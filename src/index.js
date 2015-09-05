@@ -59,6 +59,7 @@ function startGame() {
   }
 }
 
-function mousemoveHandler() {
+function mousemoveHandler(event) {
   game.mousemove(event.clientX, event.clientY);
+  game.moveTower(event.clientX, event.clientY);
 }

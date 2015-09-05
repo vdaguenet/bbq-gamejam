@@ -20,9 +20,8 @@ export default class Player {
 
   addTower(tower) {
     this.towers.push(tower);
-    const li = document.createElement('li');
-    li.innerHTML = '<a class="tower" href="javascript:void(0)">1 tour</a>';
-    this.list.appendChild(li);
+    const li = this.list.querySelector('li:first-child');
+    li.innerText = '1 tour';
   }
 
   removeTower(id) {
