@@ -31,6 +31,8 @@ function startGame() {
   const error = document.querySelector('.error-message');
 
   if (pseudo.value.length > 0) {
+	pseudo.setAttribute('class', '');
+    error.setAttribute('class', 'error-message');
     Mediator.emit('game:start');
     game.start(pseudo.value);
   }
