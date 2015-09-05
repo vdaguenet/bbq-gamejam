@@ -47,7 +47,6 @@ export default class Game {
   }
 
   addLayers() {
-    console.log(level);
     this.backgroundLayer = new Layer(this.width, this.height, 50, level);
     this.towerLayer = new TowerLayer(this.width, this.height, 50);
     this.stage.addChildAt(this.backgroundLayer, 0);
@@ -109,8 +108,8 @@ export default class Game {
   }
 
   resize(width, height) {
-    this.width = width;
-    this.height = height;
+    this.width = (level.tiles[0].length) * this.tileSize;
+    this.height = (level.tiles.length) * this.tileSize;
 
     this.renderer.resize(width, height);
   }
