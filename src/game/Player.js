@@ -1,8 +1,12 @@
 class Player {
-  constructor(pseudo) {
-    this.pseudo = pseudo;
+  constructor() {
+    this.pseudo = '';
     this.cash = 10;
     this.towers = [];
+  }
+
+  setPseudo(pseudo) {
+    this.pseudo = pseudo;
   }
 
   addCash(cash) {

@@ -33,9 +33,9 @@ export default class Game {
 
   start(pseudo) {
     console.log('Game - start');
+    Player.setPseudo(pseudo);
     console.log('Let\'s go ' + pseudo);
     this.diver = new Diver('veggie');
-    this.createPlayer(pseudo);
 
     this.update();
   }
