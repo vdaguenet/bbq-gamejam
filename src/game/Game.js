@@ -78,13 +78,15 @@ export default class Game {
 
     // TODO: update all the entities
 
-    this.checkCollision(Player.towers, this.enemies);
+    this.checkCollision(Player.towers);
     this.render();
   }
 
-  checkCollision(towers, enemies) {
+  checkCollision(towers) {
+    if (!towers || towers.length <= 0) return;
+
     towers.foreEach((tower) => {
-      enemies.forEach((enemy) => {
+      this.enemies.forEach((enemy) => {
         tower.bullets.forEach((bullet) => {
           if (bullet.x >= enemy.x
             && bullet.x <= enemy.x + enemy.width

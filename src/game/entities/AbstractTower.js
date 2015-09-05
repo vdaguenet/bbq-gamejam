@@ -1,6 +1,6 @@
 import PIXI from 'pixi.js';
 // import bindAll from 'lodash.bindAll';
-import Bullet from 'Bullet';
+import Bullet from './Bullet';
 
 /**
  * AbstractTower class
