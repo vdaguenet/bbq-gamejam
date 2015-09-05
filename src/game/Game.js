@@ -116,7 +116,8 @@ class Game {
 
       this.checkCollision(Player.towers);
       this.render();
-    } else {
+    }
+    else {
       // Skip first frame, so elapsed is not 0.
       this.lastUpdate = now;
     }

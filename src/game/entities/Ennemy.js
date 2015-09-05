@@ -29,17 +29,17 @@ export default class Ennemy extends AbstractEnnemy {
 
   update(elapsed) {
     switch (this.direction) {
-      case 'top':
-        this.position.y -= this.velocity * elapsed;
-        break;
-      case 'bottom':
-        this.position.y += this.velocity * elapsed;
-        break;
-      case 'right':
-        this.position.x += this.velocity * elapsed;
-        break;
-      default:
-        this.fight();
+    case 'top':
+      this.position.y -= this.velocity * elapsed;
+      break;
+    case 'bottom':
+      this.position.y += this.velocity * elapsed;
+      break;
+    case 'right':
+      this.position.x += this.velocity * elapsed;
+      break;
+    default:
+      this.fight();
     }
 
     if (this.direction === '') return;
