@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * AbstractEntity class
  * Will be extended by each Game Entity
