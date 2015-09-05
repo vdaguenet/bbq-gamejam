@@ -197,7 +197,7 @@
     "max-params": 0,
     "max-statements": 0,
     "no-bitwise": 1,
-    "no-plusplus": 1,
+    "no-plusplus": 0,
 
     "babel/object-shorthand": [1, "always"],
     "babel/generator-star-spacing": [1, "after"],
