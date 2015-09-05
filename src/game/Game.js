@@ -18,13 +18,13 @@ export default class Game {
     this.stage = new PIXI.Container();
   }
 
-  createPlayer(pseudo){
+  createPlayer(pseudo) {
     this.player = new Player(pseudo);
   }
 
   start(pseudo) {
     console.log('Game - start');
-    console.log("Let's go " + pseudo);
+    console.log('Let\'s go ' + pseudo);
 
     this.diver = new Diver('veggie');
     // TODO: init the game
