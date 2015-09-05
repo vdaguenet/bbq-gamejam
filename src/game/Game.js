@@ -1,6 +1,7 @@
 import bindAll from 'lodash.bindAll';
 import raf from 'raf';
 import Diver from './entities/tower/Diver';
+import Enemy from './entities/Ennemy';
 import Player from './Player';
 import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
@@ -17,7 +18,7 @@ export default class Game {
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();
-
+    this.enemies = [];
     this.backgroundLayer = undefined;
   }
 
@@ -25,10 +26,7 @@ export default class Game {
     console.log('Game - init', this.width);
     // TODO: init the game
     this.addLayers();
-  }
-
-  createPlayer(pseudo) {
-    this.player = new Player(pseudo);
+    this.populateEnemies();
   }
 
   start(pseudo) {
@@ -43,6 +41,12 @@ export default class Game {
   addLayers() {
     this.backgroundLayer = new Layer(this.width, this.height, 50, 50);
     this.stage.addChild(this.backgroundLayer);
+  }
+
+  populateEnemies() {
+    for (let i = 0; i < 1; i++) {
+      this.enemies.push(new Enemy({id: 'test', side: 'meat'}));
+    }
   }
 
   update() {
