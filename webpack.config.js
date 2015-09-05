@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer-stylus');
+var path = require('path');
 
 module.exports = {
   entry: __dirname + '/src/index.js',
@@ -7,11 +8,19 @@ module.exports = {
     path: __dirname + '/public/build',
     filename: 'main.js'
   },
+  node: {
+    fs: 'empty'
+  },
   module: {
     loaders: [
       {
         test: /\.styl$/,
         loader: ExtractTextPlugin.extract('css-loader!stylus-loader')
+      },
+      {
+        test: /\.json$/,
+        include: path.join(__dirname, 'node_modules', 'pixi.js'),
+        loader: 'json',
       },
       {
         test: /\.js$/,

@@ -1,11 +1,19 @@
 import bindAll from 'lodash.bindAll';
 import raf from 'raf';
+import PIXI from 'pixi.js';
 
 export default class Game {
-  constructor() {
+  constructor(width, height) {
     bindAll(this, 'update');
 
     console.log('Game - construct');
+
+    this.width = width;
+    this.width = height;
+    this.renderer = PIXI.autoDetectRenderer(width, height, {
+      backgroundColor: 0x1099bb,
+    });
+    this.stage = new PIXI.Container();
   }
 
   start() {
@@ -25,6 +33,21 @@ export default class Game {
   }
 
   render() {
-    // TODO: render all the things
+    this.renderer.render(this.stage);
+  }
+
+  resize(width, height) {
+    this.width = width;
+    this.height = height;
+
+    this.renderer.resize(width, height);
+  }
+
+  addElement(element) {
+    this.stage.addChild(element);
+  }
+
+  appendTo($el) {
+    $el.appendChild(this.renderer.view);
   }
 }
