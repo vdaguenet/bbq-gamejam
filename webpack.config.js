@@ -22,6 +22,11 @@ module.exports = {
             'runtime'
           ]
         }
+      },
+      {
+        test: /\.js$/,
+        loader: "eslint-loader",
+        exclude: /node_modules/
       }
     ]
   },
@@ -33,6 +38,9 @@ module.exports = {
   },
   stylus: {
     use: [autoprefixer()]
+  },
+  eslint: {
+    configFile: __dirname + '/.eslintrc'
   },
   plugins: [
     new ExtractTextPlugin('main.css')

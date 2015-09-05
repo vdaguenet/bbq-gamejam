@@ -1,5 +1,3 @@
-'use strict';
-
 import bindAll from 'lodash.bindAll';
 import raf from 'raf';
 
