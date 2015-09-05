@@ -58,17 +58,16 @@ export default class AbstractTower extends PIXI.Sprite {
 
   applyAttack(target) {
     if (this.beforeAttack(target)) {
-      let vector = this.getVector(target);
-      this.attack(target, vector);
+      this.vector = this.getVector(target);
+      this.attack(target, this.vector);
       this.afterAttack(target);
     }
   }
 
   addBullet(vector) {
-    // TODO add vector to the bullet
     // TODO setup the shot with the precision parameter
     // TODO setup the shot with the fireRate parameter
-    this.bullets.push(new Bullet(this.x, this.y, this.vector));
+    this.bullets.push(new Bullet(this.x, this.y, vector));
   }
 
   deleteOldBullets() {
@@ -78,15 +77,15 @@ export default class AbstractTower extends PIXI.Sprite {
   }
 
   getDistance(target) {
-    let x = this.position.x - (target.x + target.width / 2);
-    let y = this.position.y - (target.y + target.height / 2);
+    const x = this.position.x - (target.x + target.width / 2);
+    const y = this.position.y - (target.y + target.height / 2);
 
     return Math.sqrt(x * x + y * y);
   }
 
   getVector(target) {
-    let x = this.position.x - (target.x + target.width / 2);
-    let y = this.position.y - (target.y + target.height / 2);
+    const x = this.position.x - (target.x + target.width / 2);
+    const y = this.position.y - (target.y + target.height / 2);
 
     return { 'x': x, 'y': y };
   }
