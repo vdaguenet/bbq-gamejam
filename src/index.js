@@ -5,7 +5,7 @@ import Loader from './utils/Loader';
 import Mediator from './utils/Mediator';
 import Game from './game/Game';
 
-const game = new Game(900, 500);
+const game = new Game(900, 550);
 
 Loader.addTextures([
   { id: 'grass', path: '/assets/images/textures/grass.jpg' },

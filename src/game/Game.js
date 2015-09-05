@@ -6,16 +6,18 @@ import Player from './Player';
 import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
 import TowerLayer from './grid/layers/TowerLayer';
+import level from './levels/level1.json';
 
 export default class Game {
-  constructor(width, height) {
+  constructor() {
     bindAll(this, 'update');
     console.log('Game - construct');
 
     this.player;
-    this.width = width;
-    this.height = height;
-    this.renderer = PIXI.autoDetectRenderer(width, height, {
+    this.tileSize = 50;
+    this.width = (level.tiles[0].length) * this.tileSize;
+    this.height = (level.tiles.length) * this.tileSize;
+    this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();
@@ -40,8 +42,9 @@ export default class Game {
   }
 
   addLayers() {
-    this.backgroundLayer = new Layer(this.width, this.height, 50, 50);
-    this.towerLayer = new TowerLayer(this.width, this.height, 50, 50);
+    console.log(level);
+    this.backgroundLayer = new Layer(this.width, this.height, 50, level);
+    this.towerLayer = new TowerLayer(this.width, this.height, 50);
     this.stage.addChildAt(this.backgroundLayer, 0);
     this.stage.addChildAt(this.towerLayer, 1);
   }
