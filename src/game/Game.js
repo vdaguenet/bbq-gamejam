@@ -4,6 +4,7 @@ import Diver from './entities/tower/Diver';
 import Player from './Player';
 import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
+import TowerLayer from './grid/layers/TowerLayer';
 
 export default class Game {
   constructor(width, height) {
@@ -42,7 +43,9 @@ export default class Game {
 
   addLayers() {
     this.backgroundLayer = new Layer(this.width, this.height, 50, 50);
-    this.stage.addChild(this.backgroundLayer);
+    this.towerLayer = new TowerLayer(this.width, this.height, 50, 50);
+    this.stage.addChildAt(this.backgroundLayer, 0);
+    this.stage.addChildAt(this.towerLayer, 1);
   }
 
   update() {

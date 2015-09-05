@@ -14,7 +14,7 @@ export default class MasterChef extends AbstractTower {
         attack: 32,
         precision: 0.7,
         cost: 26,
-        distAttack: 3
+        distAttack: 3,
         radius: 1,
         maxTarget: -1,
       },

@@ -8,7 +8,8 @@ import Game from './game/Game';
 const game = new Game(900, 500);
 
 Loader.addTextures([
-  { id: 'grass', path: '/assets/images/textures/grass.jpg' }
+  { id: 'grass', path: '/assets/images/textures/grass.jpg' },
+  { id: 'ennemy', path: '/assets/images/textures/ennemy.png' },
 ]);
 
 domready(() => {
