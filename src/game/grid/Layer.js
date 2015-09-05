@@ -1,6 +1,7 @@
 import PIXI from 'pixi.js';
 import Tile from './Tile';
 import Loader from 'utils/Loader';
+import {getTextureCode} from 'utils/levelUtils';
 
 export default class Layer extends PIXI.Container {
   constructor(width, height, tileSize, level) {
@@ -20,14 +21,10 @@ export default class Layer extends PIXI.Container {
         this.addChild(new Tile(
           x * this.tileSize,
           y * this.tileSize,
-          Loader.getTexture(this.getTextureCode(x, y))
+          Loader.getTexture(getTextureCode(x, y))
           )
         );
       }
     }
-  }
-
-  getTextureCode(x, y) {
-    return this.level.codes[this.level.tiles[y][x]];
   }
 }
