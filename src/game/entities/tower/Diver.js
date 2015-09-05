@@ -21,7 +21,7 @@ export default class Diver extends AbstractTower {
       id: options.id,
       texture: Loader.getTexture('diver'),
     });
-    // TODO define side;
+    // TODO define side
     this.side = options.side;
 
   }

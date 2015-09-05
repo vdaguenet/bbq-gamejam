@@ -19,7 +19,7 @@ export default class CommisChef extends AbstractTower {
       },
       id: options.id,
     });
-    // TODO define side;
+    // TODO define side
     this.side = options.side;
 
   }

@@ -16,10 +16,12 @@ export default class SecondInCommand extends AbstractTower {
         cost: 19,
         radius: 2,
         maxTarget: -1,
+        fireRate: 60,
+        shots: [],
       },
       id: options.id,
     });
-    // TODO define side;
+    // TODO define side
     this.side = options.side;
 
   }

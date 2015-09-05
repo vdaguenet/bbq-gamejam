@@ -17,10 +17,12 @@ export default class MasterChef extends AbstractTower {
         distAttack: 3,
         radius: 1,
         maxTarget: -1,
+        fireRate: 60,
+        shots: [],
       },
       id: options.id,
     });
-    // TODO define side;
+    // TODO define side
     this.side = options.side;
 
   }

@@ -10,7 +10,7 @@ export default class Base {
 
     this.life = 20;
 
-    // TODO define side;
+    // TODO define side
     this.side = options.side;
 
   }

@@ -1,6 +1,7 @@
 import bindAll from 'lodash.bindAll';
 import raf from 'raf';
 import Diver from './entities/tower/Diver';
+import Enemy from './entities/Ennemy';
 import Player from './Player';
 import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
@@ -18,7 +19,7 @@ export default class Game {
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();
-
+    this.enemies = [];
     this.backgroundLayer = undefined;
   }
 
@@ -26,10 +27,7 @@ export default class Game {
     console.log('Game - init', this.width);
     // TODO: init the game
     this.addLayers();
-  }
-
-  createPlayer(pseudo) {
-    this.player = new Player(pseudo);
+    this.populateEnemies();
   }
 
   start(pseudo) {
@@ -48,12 +46,36 @@ export default class Game {
     this.stage.addChildAt(this.towerLayer, 1);
   }
 
+  populateEnemies() {
+    for (let i = 0; i < 1; i++) {
+      this.enemies.push(new Enemy({id: 'test', side: 'meat'}));
+    }
+  }
+
   update() {
     raf(this.update);
 
     // TODO: update all the entities
 
+    this.checkCollision(Player.towers, this.enemies);
     this.render();
+  }
+
+  checkCollision(towers, enemies) {
+    towers.foreEach((tower) => {
+      enemies.forEach((enemy) => {
+        tower.bullets.forEach((bullet) => {
+          if (bullet.x >= enemy.x
+            && bullet.x <= enemy.x + enemy.width
+            && bullet.y >= enemy.y
+            && bullet.y <= enemy.y + enemy.height) {
+            bullet.deletable = true;
+            enemy.deletable = true;
+            // TODO add points ?
+          }
+        });
+      });
+    });
   }
 
   render() {
