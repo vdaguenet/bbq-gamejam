@@ -19,7 +19,6 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        include: path.join(__dirname, 'node_modules', 'pixi.js'),
         loader: 'json',
       },
       {
@@ -42,7 +41,8 @@ module.exports = {
   resolve: {
     alias: {
       utils: __dirname + '/src/utils',
-      game: __dirname + '/src/game'
+      game: __dirname + '/src/game',
+      levels: __dirname + '/src/game/levels',
     }
   },
   stylus: {

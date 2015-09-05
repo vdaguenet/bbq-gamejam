@@ -5,7 +5,8 @@ import Loader from './utils/Loader';
 import Mediator from './utils/Mediator';
 import Game from './game/Game';
 
-const game = new Game(900, 500);
+const game = new Game(900, 550);
+game.appendTo(document.body);
 
 Loader.addTextures([
   { id: 'grass', path: '/assets/images/textures/grass.jpg' },
@@ -14,24 +15,15 @@ Loader.addTextures([
 
 domready(() => {
   console.log('Hello world!');
-  game.appendTo(document.body);
   bindEvents();
 });
 
 function bindEvents() {
   const btnStart = document.querySelector('.ButtonStart');
+  const btnTowerAdd = document.querySelector('.add-tower');
+
   on(btnStart, 'click', startGame);
-
-  const btnTowerList = document.querySelector('.add-tower');
-  on(btnTowerList, 'click', function() {
-    game.addTower();
-  });
-
-  const btnTower = document.querySelector('.tower');
-  on(btnTower, 'click', function() {
-    game.dragTower();
-  });
-
+  on(btnTowerAdd, 'click', addTower);
   on(document, 'mousemove', mousemoveHandler);
 
   Mediator.on('loader:complete', () => {
@@ -62,4 +54,14 @@ function startGame() {
 function mousemoveHandler(event) {
   game.mousemove(event.clientX, event.clientY);
   game.moveTower(event.clientX, event.clientY);
+}
+
+function addTower() {
+  game.addTower();
+  const btnTower = document.querySelector('.tower');
+  on(btnTower, 'click', dragTower);
+}
+
+function dragTower() {
+  game.dragTower();
 }

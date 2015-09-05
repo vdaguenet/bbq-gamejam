@@ -7,16 +7,18 @@ import PIXI from 'pixi.js';
 import Layer from './grid/Layer';
 import Chef from './entities/tower/Chef.js';
 import TowerLayer from './grid/layers/TowerLayer';
+import level from './levels/level1.json';
+import { tileSize } from 'utils/levelUtils';
 
 export default class Game {
-  constructor(width, height) {
+  constructor() {
     bindAll(this, 'update');
     console.log('Game - construct');
 
     this.player;
-    this.width = width;
-    this.height = height;
-    this.renderer = PIXI.autoDetectRenderer(width, height, {
+    this.width = (level.tiles[0].length) * tileSize;
+    this.height = (level.tiles.length) * tileSize;
+    this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();
@@ -26,6 +28,8 @@ export default class Game {
 
     this.enemies = [];
     this.backgroundLayer = undefined;
+
+    this.lastUpdate = null;
   }
 
   init() {
@@ -46,15 +50,23 @@ export default class Game {
   }
 
   addLayers() {
-    this.backgroundLayer = new Layer(this.width, this.height, 50, 50);
-    this.towerLayer = new TowerLayer(this.width, this.height, 50, 50);
+    this.backgroundLayer = new Layer(this.width, this.height, 50, level);
+    this.towerLayer = new TowerLayer(this.width, this.height, 50);
     this.stage.addChildAt(this.backgroundLayer, 0);
     this.stage.addChildAt(this.towerLayer, 1);
   }
 
   populateEnemies() {
+    const tileStart = {
+      x: 0,
+      y: 5,
+    };
+    let e;
+
     for (let i = 0; i < 1; i++) {
-      this.enemies.push(new Enemy({id: 'test', side: 'meat'}));
+      e = new Enemy({ id: 'test', side: 'meat', 'currentTile': tileStart });
+      this.enemies.push(e);
+      this.stage.addChild(e);
     }
   }
 
@@ -91,12 +103,25 @@ export default class Game {
   }
 
   update() {
+    const now = window.Date.now();
+
+    if (this.lastUpdate) {
+      const elapsed = (now - this.lastUpdate) / 1000;
+      this.lastUpdate = now;
+
+      // TODO: update all the entities
+      this.enemies.forEach((e) => {
+        e.update(elapsed);
+      });
+
+      this.checkCollision(Player.towers);
+      this.render();
+    } else {
+      // Skip first frame, so elapsed is not 0.
+      this.lastUpdate = now;
+    }
+
     raf(this.update);
-
-    // TODO: update all the entities
-
-    this.checkCollision(Player.towers);
-    this.render();
   }
 
   checkCollision(towers) {
@@ -123,8 +148,8 @@ export default class Game {
   }
 
   resize(width, height) {
-    this.width = width;
-    this.height = height;
+    this.width = (level.tiles[0].length) * tileSize;
+    this.height = (level.tiles.length) * tileSize;
 
     this.renderer.resize(width, height);
   }

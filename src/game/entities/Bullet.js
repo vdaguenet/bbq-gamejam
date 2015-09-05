@@ -12,7 +12,9 @@ export default class Bullet {
   }
 
   update() {
-      // TODO follow the vector
-      // TODO turn deletable to true if bullet pass through screen edges
+    // TODO follow the vector
+    // TODO turn deletable to true if bullet pass through screen edges
+    this.x += this.vector.x;
+    this.y += this.vector.y;
   }
 }
