@@ -17,7 +17,7 @@ export default class SecondInCommand extends AbstractTower {
         radius: 2,
         maxTarget: -1,
       },
-      id: options,
+      id: options.id,
     });
     // TODO define side;
     this.side = options.side;

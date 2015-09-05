@@ -1,5 +1,4 @@
 import PIXI from 'pixi.js';
-import Tile from '../tile/Tile';
 import Loader from 'utils/Loader';
 
 export default class TowerLayer extends PIXI.Container {
@@ -10,7 +9,12 @@ export default class TowerLayer extends PIXI.Container {
     // this.populate(width, height);
   }
 
-  addTower(x, y) {
+  /**
+   * [addTower description]
+   * @param {AbstractTower} tower
+   * @param {Object} point x y
+   */
+  addTower(tower, point) {
 
     // TODO Trouver la case correspondante au X, Y passé en paramètre et addChild la Tower correspondante
 
