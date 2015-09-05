@@ -9,9 +9,6 @@ import Loader from 'utils/Loader';
 export default class Ennemy extends AbstractEnnemy {
 
   constructor(options) {
-
-    console.log('Ennemy -> constructor');
-
     super({
       texture: Loader.getTexture('ennemy'),
       stats: {
@@ -23,16 +20,14 @@ export default class Ennemy extends AbstractEnnemy {
       id: options.id,
       currentTile: options.currentTile,
     });
-    // TODO define side;
+    this.velocity = 10;
     this.side = options.side;
     this.direction = 'right';
-
     this.position.x = this.currentTile.x * tileSize;
     this.position.y = this.currentTile.y * tileSize;
   }
 
   update(elapsed) {
-    this.findDirection();
     switch (this.direction) {
       case 'top':
         this.position.y -= this.velocity * elapsed;
@@ -43,21 +38,48 @@ export default class Ennemy extends AbstractEnnemy {
       case 'right':
         this.position.x += this.velocity * elapsed;
         break;
-      case 'left':
-        this.position.x -= this.velocity * elapsed;
-        break;
+      default:
+        this.fight();
+    }
+
+    if (this.direction === '') return;
+
+    if (this.position.x > (this.currentTile.x * tileSize + tileSize)) {
+      this.currentTile.x++;
+      this.findDirection();
+    }
+
+    if (this.position.y < (this.currentTile.y * tileSize - tileSize)) {
+      this.currentTile.y--;
+      this.findDirection();
+    }
+
+    if (this.position.y > (this.currentTile.y * tileSize + tileSize)) {
+      this.currentTile.y++;
+      this.findDirection();
     }
   }
 
   findDirection() {
-    if (tileIsWalkable(this.currentTile.x, this.currentTile.y - 1)) {
+    if (this.direction !== 'bottom' && tileIsWalkable(this.currentTile.x, this.currentTile.y - 1)) {
       this.direction = 'top';
-    } else if (tileIsWalkable(this.currentTile.x, this.currentTile.y + 1)) {
-      this.direction = 'bottom';
-    } else if (tileIsWalkable(this.currentTile.x - 1, this.currentTile.y)) {
-      this.direction = 'left';
-    } else {
-      this.direction = 'right';
+      return;
     }
+
+    if (this.direction !== 'top' && tileIsWalkable(this.currentTile.x, this.currentTile.y + 1)) {
+      this.direction = 'bottom';
+      return;
+    }
+
+    if (tileIsWalkable(this.currentTile.x + 1, this.currentTile.y)) {
+      this.direction = 'right';
+      return;
+    }
+
+    this.direction = '';
+  }
+
+  fight() {
+    console.log('Enemy - fight');
   }
 }
