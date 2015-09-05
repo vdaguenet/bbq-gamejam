@@ -26,6 +26,8 @@ export default class Ennemy extends AbstractEnnemy {
     this.direction = 'right';
     this.position.x = this.currentTile.x * tileSize;
     this.position.y = this.currentTile.y * tileSize;
+
+    this.animCount = 0;
   }
 
   update(elapsed) {
@@ -43,6 +45,8 @@ export default class Ennemy extends AbstractEnnemy {
         this.fight();
     }
 
+    this.animate();
+
     if (this.direction === '') return;
 
     if (this.position.x > (this.currentTile.x * tileSize + tileSize)) {
@@ -59,6 +63,13 @@ export default class Ennemy extends AbstractEnnemy {
       this.currentTile.y++;
       this.findDirection();
     }
+  }
+
+  animate() {
+    this.scale.x = 1 + Math.sin(this.animCount) * 0.025;
+    this.scale.y = 1 + Math.cos(this.animCount) * 0.05;
+
+    this.animCount += 0.1;
   }
 
   findDirection() {
