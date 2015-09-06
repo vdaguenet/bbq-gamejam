@@ -36,7 +36,7 @@ export default class AbstractTower extends PIXI.Sprite {
       down: Loader.getTexture(options.textures.down),
       left: Loader.getTexture(options.textures.left),
     };
-    this.texture = this.textures.down;
+    // this.texture = this.textures.right;
 
   }
 
