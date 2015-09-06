@@ -50,6 +50,19 @@ canvas
     background-size cover
     background-position 0 90%
 
+.round-container
+  color: #FFE6A9;
+  font-size: 20px;
+  left: 50%;
+  top: 10px;
+  position: absolute;
+  transform: translateX(-50%) translateY(-50px);  
+  transition: all 0.5s ease;
+  z-index: 20;
+  &.active
+    transform: translateX(-50%) translateY(0px);
+    
+
 .pseudo.error
   border 1px solid red
 
