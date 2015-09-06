@@ -35,6 +35,7 @@ export default class AbstractTower extends PIXI.Sprite {
   update() {
     console.warn('You should override update method on', Object.getPrototypeOf(this));
 
+    this.rotateTower(this.currentTargets);
     this.applyAttack(this.currentTargets);
     this.deleteOldBullets();
   }
@@ -81,6 +82,30 @@ export default class AbstractTower extends PIXI.Sprite {
     this.bullets = this.bullets.filter((bullets) => {
       return !bullets.deletable;
     });
+  }
+
+  rotateTower(target) {
+    const angle = Math.atan2(target.y - this.y, target.x - this.x);
+
+    if (angle >= Math.PI / 4 && angle < 3 * Math.PI / 4) {
+      // Look up;
+      return;
+    }
+
+    if (angle >= 3 * Math.PI / 4 && angle < 5 * Math.PI / 4) {
+      // Look at the left;
+      return;
+    }
+
+    if (angle >= 5 * Math.PI / 4 && angle < 7 * Math.PI / 4) {
+      // Look down;
+      return;
+    }
+
+    if (angle >= 7 * Math.PI / 4 && angle < Math.PI / 4) {
+      // Look at the right;
+      return;
+    }
   }
 
   getDistance(target) {

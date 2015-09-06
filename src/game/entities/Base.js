@@ -19,6 +19,7 @@ export default class Base extends PIXI.Sprite {
     this.life = 20;
 
     // TODO define side
+    // this.side = options.side;
   }
 
   update() {
