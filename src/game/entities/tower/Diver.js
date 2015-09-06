@@ -31,7 +31,7 @@ export default class Diver extends AbstractTower {
     });
 
     this.head = new PIXI.Sprite(Loader.getTexture('diver_head_front'));
-    this.head.anchor.set(-0.20, 0.50);
+    this.head.anchor.set(-0.2, 0.5);
     this.addChild(this.head);
 
     this.anchor.set(-0.2, 0.5);
@@ -43,19 +43,19 @@ export default class Diver extends AbstractTower {
   }
 
   turnleft() {
-    this.head.anchor.set(-0.20, 0.50);
+    this.head.anchor.set(-0.2, 0.5);
   }
 
   turnRight() {
-    this.head.anchor.set(-0.20, 0.50);
+    this.head.anchor.set(-0.2, 0.5);
   }
 
   turnUp() {
-    this.head.anchor.set(-0.18, 0.50);
+    this.head.anchor.set(-0.18, 0.5);
   }
 
   turnDown() {
-    this.head.anchor.set(-0.18, 0.50);
+    this.head.anchor.set(-0.18, 0.5);
   }
 
 }
