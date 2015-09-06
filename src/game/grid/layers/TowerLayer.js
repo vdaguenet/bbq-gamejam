@@ -12,7 +12,7 @@ export default class TowerLayer extends PIXI.Container {
     this.towers = [];
     this.canvas;
     this.stage = stage;
-    this.isPlacing = false
+    this.isPlacing = false;
   }
 
   /**
@@ -21,26 +21,30 @@ export default class TowerLayer extends PIXI.Container {
    * @param {Object} point x y
    */
   addTower(tower, point) {
-    this.canvas = document.getElementsByTagName('canvas');
-    this.isPlacing = true;
-    // create a texture from an image path
-    const texture = PIXI.Texture.fromImage('assets/images/test.jpg');
-    // create a new Sprite using the texture
-    const towerLayer = new PIXI.Sprite(texture);
-    towerLayer.position.x = point.x;
-    towerLayer.position.y = point.y;
+    console.log(tower.texture);
+    if (!this.isPlacing) {
+      this.canvas = document.getElementsByTagName('canvas');
+      this.isPlacing = true;
+      console.log(tower.texture);
+      // create a texture from an image path
+      const texture = '/assets/images/textures/test.jpg';
+      // create a new Sprite using the texture
+      const towerLayer = new PIXI.Sprite(texture);
+      towerLayer.position.x = point.x;
+      towerLayer.position.y = point.y;
 
-    this.stage.addChild(towerLayer);
-    // Pas possible avec un on stage ?
-    on(this.canvas[0], 'mousemove', (e) => {
-      console.log('test');
-      this.onMouseMove(e, towerLayer);
-    });
+      this.stage.addChild(towerLayer);
+      // Pas possible avec un on stage ?
+      on(this.canvas[0], 'mousemove', (e) => {
+        console.log('test');
+        this.onMouseMove(e, towerLayer);
+      });
 
-    on(this.canvas[0], 'click', (e) => {
-      console.log('test2');
-      this.placeTower(e, towerLayer);
-    });
+      on(this.canvas[0], 'click', (e) => {
+        console.log('test2');
+        this.placeTower(e, towerLayer);
+      });
+    }
     // TODO Trouver la case correspondante au X, Y passé en paramètre et addChild la Tower correspondante
   }
 
