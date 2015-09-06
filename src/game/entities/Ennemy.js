@@ -20,8 +20,8 @@ export default class Ennemy extends AbstractEnnemy {
       id: options.id,
       currentTile: options.currentTile,
     });
-    this.anchor = {x: 0, y: 0.3};
-    this.velocity = 10;
+    this.anchor = { x: 0, y: 0.3 };
+    this.velocity = 50;
     this.side = options.side;
     this.direction = 'right';
     this.position.x = this.currentTile.x * tileSize;

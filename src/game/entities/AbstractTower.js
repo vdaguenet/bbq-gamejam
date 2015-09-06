@@ -1,6 +1,7 @@
 import PIXI from 'pixi.js';
 // import bindAll from 'lodash.bindAll';
 import Bullet from './Bullet';
+import Loader from 'utils/Loader';
 
 /**
  * AbstractTower class
@@ -20,6 +21,7 @@ export default class AbstractTower extends PIXI.Sprite {
      * @type {number} radius
      * @type {number} maxTarget
      * @type {number} fireRate
+     * @type {object} textures
      */
     this.stats = options.stats;
 
@@ -28,6 +30,13 @@ export default class AbstractTower extends PIXI.Sprite {
     this.bullets = [];
     this.vector = options.vector || { x: 0, y: 0 };
     this.lastFire = 0;
+    this.textures = {
+      up: Loader.getTexture(options.stats.textures.up),
+      right: Loader.getTexture(options.stats.textures.right),
+      down: Loader.getTexture(options.stats.textures.down),
+      left: Loader.getTexture(options.stats.textures.left),
+    };
+    this.texture = Loader.getTexture(this.stats.textures.down);
 
   }
 
@@ -87,22 +96,22 @@ export default class AbstractTower extends PIXI.Sprite {
     const angle = Math.atan2(target.y - this.y, target.x - this.x);
 
     if (angle >= Math.PI / 4 && angle < 3 * Math.PI / 4) {
-      // Look up;
+      this.texture = Loader.getTexture(this.stats.textures.up);
       return;
     }
 
     if (angle >= 3 * Math.PI / 4 && angle < 5 * Math.PI / 4) {
-      // Look at the left;
+      this.texture = Loader.getTexture(this.stats.textures.left);
       return;
     }
 
     if (angle >= 5 * Math.PI / 4 && angle < 7 * Math.PI / 4) {
-      // Look down;
+      this.texture = Loader.getTexture(this.stats.textures.down);
       return;
     }
 
     if (angle >= 7 * Math.PI / 4 && angle < Math.PI / 4) {
-      // Look at the right;
+      this.texture = Loader.getTexture(this.stats.textures.right);
       return;
     }
   }

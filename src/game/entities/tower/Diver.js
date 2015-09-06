@@ -1,6 +1,7 @@
 import AbstractTower from '../AbstractTower';
 import Loader from 'utils/Loader';
 import PIXI from 'pixi.js';
+
 /**
  * Diver class
  * Weaker tower
@@ -19,9 +20,15 @@ export default class Diver extends AbstractTower {
         radius: 1,
         maxTarget: 1,
         fireRate: 60,
+        textures: {
+          up: 'diver_bottom_back',
+          right: 'diver_bottom_right',
+          down: 'diver_bottom_front',
+          left: 'diver_bottom_left',
+        },
       },
       id: 'diver',
-      texture: Loader.getTexture('diver_bottom_left'),
+      texture: 'diver_bottom_left',
     });
 
     this.head = new PIXI.Sprite(Loader.getTexture('diver_head_left'));
