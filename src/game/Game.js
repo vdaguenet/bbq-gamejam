@@ -11,6 +11,9 @@ import Layer from './grid/Layer';
 import TowerLayer from './grid/layers/TowerLayer';
 import level from './levels/level1.json';
 import { tileSize } from 'utils/levelUtils';
+import clone from 'clone';
+
+const MAX_ENEMIES = 7;
 
 class Game {
   constructor() {
@@ -24,7 +27,6 @@ class Game {
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();
-
     this.enemies = [];
     this.backgroundLayer = undefined;
 
@@ -35,12 +37,12 @@ class Game {
     console.log('Game - init', this.width);
     // TODO: init the game
     this.addLayers();
-    this.populateEnemies();
   }
 
   start(pseudo) {
     console.log('Game - start');
     Player.setPseudo(pseudo);
+    this.populateEnemies();
 
     this.update();
   }
@@ -57,13 +59,16 @@ class Game {
       x: 0,
       y: 5,
     };
-    let e;
 
-    for (let i = 0; i < 1; i++) {
-      e = new Enemy({ id: 'test', side: 'meat', 'currentTile': tileStart });
+    const enemiesInterval = setInterval(() => {
+      const e = new Enemy({ id: 'test' + Math.random(), side: 'meat', 'currentTile': clone(tileStart) });
       this.enemies.push(e);
       this.stage.addChild(e);
-    }
+
+      if (this.enemies.length >= MAX_ENEMIES) {
+        return clearInterval(enemiesInterval);
+      }
+    }, 1000);
   }
 
   addTower(item) {
