@@ -36,12 +36,11 @@ class Game {
   }
 
   init() {
-    // TODO: init the game
     this.addLayers();
   }
 
   start() {
-    // this.populateEnemies();
+    this.populateEnemies();
 
     this.update();
   }
