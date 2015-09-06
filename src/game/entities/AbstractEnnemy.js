@@ -19,6 +19,7 @@ export default class AbstractEnnemy extends PIXI.Sprite {
      */
     this.stats = options.stats;
     this.currentTile = options.currentTile;
+    this.target = options.target;
     this.id = options.id;
     this.deletable = false;
     this.velocity = 0;
@@ -29,8 +30,13 @@ export default class AbstractEnnemy extends PIXI.Sprite {
   }
 
   fight() {
-    // TODO Attack base
     console.log('Enemy - fight');
+
+    const randPreci = Math.random();
+    if (randPreci <= this.stats.precision) {
+      const valueFight = Math.random() * (this.stats.maxAttack - this.stats.minAttack) + this.stats.minAttack;
+      this.target.endureDamages(valueFight);
+    }
   }
 
   endureDamages(damage) {

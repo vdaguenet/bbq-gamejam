@@ -12,13 +12,14 @@ export default class Ennemy extends AbstractEnnemy {
     super({
       texture: Loader.getTexture('ennemy_right'),
       stats: {
-        minAttack: 3,
-        maxAttack: 4,
+        minAttack: 1,
+        maxAttack: 3,
         precision: 0.7,
         life: 8,
       },
       id: options.id,
       currentTile: options.currentTile,
+      target: options.target,
     });
     this.anchor = { x: 0, y: 0.3 };
     this.velocity = Math.random() * (50 - 30) + 30;

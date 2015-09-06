@@ -59,6 +59,8 @@ function bindEvents() {
     on(addButton, 'click', addTower);
   });
 
+  Mediator.on('game:over', stopGame);
+
   Mediator.on('loader:complete', () => {
     Game.init();
   });
@@ -86,4 +88,9 @@ function startGame() {
 
 function addTower() {
   Game.addTower(this);
+}
+
+function stopGame() {
+  const endOverlay = document.querySelector('.game-over-container');
+  endOverlay.className += ' active';
 }
