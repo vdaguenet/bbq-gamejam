@@ -12,8 +12,7 @@ import TowerLayer from './grid/layers/TowerLayer';
 import level from './levels/level1.json';
 import { tileSize } from 'utils/levelUtils';
 import clone from 'clone';
-
-let MAX_ENEMIES = 3;
+import Mediator from 'utils/Mediator';
 
 class Game {
   constructor() {
@@ -33,6 +32,7 @@ class Game {
     this.lastUpdate = null;
     this.raf;
     this.round = 1;
+    this.roundMaxEnemies = 3;
   }
 
   init() {
@@ -58,15 +58,13 @@ class Game {
   }
 
   populateEnemies() {
-    const round = document.querySelector('.round');    
     const tileStart = {
       x: 0,
       y: 5,
     };
 
-    round.innerText = 'Round ' + this.round;
-    round.parentNode.setAttribute('class', 'round-container active');
-    
+    Mediator.emit('round:update', this.round);
+
     const enemiesInterval = setInterval(() => {
       const e = new Enemy({
         id: 'test' + Math.random(),
@@ -77,7 +75,7 @@ class Game {
       this.enemies.push(e);
       this.stage.addChild(e);
 
-      if (this.enemies.length >= MAX_ENEMIES) {
+      if (this.enemies.length >= this.roundMaxEnemies) {
         return clearInterval(enemiesInterval);
       }
     }, 1000);
@@ -145,7 +143,7 @@ class Game {
 
           setTimeout(() => {
             this.round += 1;
-            MAX_ENEMIES += 2;
+            this.roundMaxEnemies += 2;
             this.populateEnemies();
           }, 5000);
         }

@@ -19,7 +19,7 @@ class Player {
 
   addScore(value) {
     this.score += value;
-    this.addCash(0.2 * value);
+    this.addCash(0.1 * value);
     Mediator.emit('score:update', this.score);
   }
 

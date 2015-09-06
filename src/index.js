@@ -65,6 +65,7 @@ function bindEvents() {
   Mediator.on('game:over', stopGame);
   Mediator.on('cash:update', updateCash);
   Mediator.on('score:update', updateScore);
+  Mediator.on('round:update', updateRound);
 
   Mediator.on('loader:complete', () => {
     Game.init();
@@ -109,4 +110,10 @@ function updateScore(value) {
 function stopGame() {
   const endContainer = document.querySelector('.game-over-container');
   classes.add(endContainer, 'active');
+}
+
+function updateRound(value) {
+  const roundEl = document.getElementById('round');
+  classes.add(roundEl, 'active');
+  roundEl.innerHTML = value;
 }
