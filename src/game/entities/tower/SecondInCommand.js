@@ -13,7 +13,7 @@ export default class SecondInCommand extends AbstractTower {
         cost: 19,
         radius: 2,
         maxTarget: -1,
-        fireRate: 60,
+        fireRate: 1000,
       },
       id: 'second-in-command',
       textures: {
