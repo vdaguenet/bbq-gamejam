@@ -31,6 +31,10 @@ Loader.addTextures([
   { id: 'masterChef_back', path: '/assets/images/textures/masterChef_back.png' },
   { id: 'masterChef_left', path: '/assets/images/textures/masterChef_left.png' },
   { id: 'masterChef_right', path: '/assets/images/textures/masterChef_right.png' },
+  // Ammos
+  { id: 'masterChef_seed', path: '/assets/images/textures/masterChef_seed.png' },
+  { id: 'sousChef_bean', path: '/assets/images/textures/sousChef_bean.png' },
+  { id: 'diver_washer', path: '/assets/images/textures/diver_washer.png' },
   // Base
   { id: 'base', path: '/assets/images/textures/base.png' },
   // Ennemy
@@ -79,6 +83,7 @@ function addTower() {
 }
 
 function stopGame() {
-  const endOverlay = document.querySelector('.game-over-container');
-  endOverlay.className += ' active';
+  const endContainer = document.querySelector('.game-over-container');
+
+  endContainer.className += ' active';
 }

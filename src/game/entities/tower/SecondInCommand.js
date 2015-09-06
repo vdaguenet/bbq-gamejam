@@ -21,14 +21,11 @@ export default class SecondInCommand extends AbstractTower {
         down: 'sousChef_front',
         left: 'sousChef_left',
         right: 'sousChef_right',
+        ammo: 'sousChef_bean',
       },
     });
 
     this.anchor.set(0, 0.52);
-  }
-
-  update() {
-    console.warn('You should override update method on', Object.getPrototypeOf(this));
   }
 
 }

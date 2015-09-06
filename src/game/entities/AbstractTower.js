@@ -35,16 +35,17 @@ export default class AbstractTower extends PIXI.Sprite {
       right: Loader.getTexture(options.textures.right),
       down: Loader.getTexture(options.textures.down),
       left: Loader.getTexture(options.textures.left),
+      ammo: Loader.getTexture(options.textures.ammo),
     };
     // this.texture = this.textures.right;
 
   }
 
   update() {
-    console.warn('You should override update method on', Object.getPrototypeOf(this));
+    // console.warn('You should override update method on', Object.getPrototypeOf(this));
+    this.rotateTower(this.currentTargets[0]);
+    this.applyAttack(this.currentTargets[0]);
 
-    this.rotateTower(this.currentTargets);
-    this.applyAttack(this.currentTargets);
     this.deleteOldBullets();
   }
 
@@ -57,7 +58,7 @@ export default class AbstractTower extends PIXI.Sprite {
   }
 
   attack(target, vector) {
-    if (Math.random < this.stats.precision) {
+    if (Math.random() < this.stats.precision) {
       target.hp -= this.stats.attack;
       this.addBullet(target.position, vector);
     }
@@ -80,7 +81,7 @@ export default class AbstractTower extends PIXI.Sprite {
 
   addBullet(vector) {
     if (Date.now() - this.lastFire > this.stats.fireRate) {
-      this.bullets.push(new Bullet(this.x, this.y, vector));
+      this.bullets.push(new Bullet(this.x, this.y, vector, this.textures.ammo));
 
       this.lastFire = Date.now();
     }
@@ -93,10 +94,14 @@ export default class AbstractTower extends PIXI.Sprite {
   }
 
   rotateTower(target) {
-    const angle = Math.atan2(target.y - this.y, target.x - this.x);
+    let angle = Math.atan2(target.y - this.y, target.x - this.x);
+    if (angle < 0) {
+      angle += 2 * Math.PI;
+    }
+    console.log(angle);
 
     if (angle >= Math.PI / 4 && angle < 3 * Math.PI / 4) {
-      this.texture = this.textures.up;
+      this.texture = this.textures.down;
       return;
     }
 
@@ -106,11 +111,11 @@ export default class AbstractTower extends PIXI.Sprite {
     }
 
     if (angle >= 5 * Math.PI / 4 && angle < 7 * Math.PI / 4) {
-      this.texture = this.textures.down;
+      this.texture = this.textures.up;
       return;
     }
 
-    if (angle >= 7 * Math.PI / 4 && angle < Math.PI / 4) {
+    if (angle >= 7 * Math.PI / 4) {
       this.texture = this.textures.right;
       return;
     }

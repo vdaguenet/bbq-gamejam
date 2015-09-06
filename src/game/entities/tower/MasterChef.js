@@ -25,15 +25,12 @@ export default class MasterChef extends AbstractTower {
         down: 'masterChef_front',
         left: 'masterChef_left',
         right: 'masterChef_right',
+        ammo: 'masterChef_seed',
       },
     });
 
     this.anchor.set(0, 0.2);
 
-  }
-
-  update() {
-    console.warn('You should override update method on', Object.getPrototypeOf(this));
   }
 
 }

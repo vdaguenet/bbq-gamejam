@@ -27,6 +27,7 @@ export default class Diver extends AbstractTower {
         down: 'diver_bottom_front',
         left: 'diver_bottom_left',
         right: 'diver_bottom_right',
+        ammo: 'diver_washer',
       },
     });
 
@@ -36,10 +37,6 @@ export default class Diver extends AbstractTower {
 
     this.anchor.set(-0.2, 0.5);
 
-  }
-
-  update() {
-    console.warn('You should override update method on', Object.getPrototypeOf(this));
   }
 
   turnleft() {

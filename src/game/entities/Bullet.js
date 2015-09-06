@@ -1,9 +1,12 @@
 import Game from '../Game';
+import PIXI from 'pixi.js';
+import Loader from 'utils/Loader';
 /**
  * Bullet class
  */
-export default class Bullet {
-  constructor(x, y, vector) {
+export default class Bullet extends PIXI.Sprite {
+  constructor(x, y, vector, texture) {
+    super(Loader.getTexture(texture));
     console.log('Bullet fired');
 
     this.x = x;

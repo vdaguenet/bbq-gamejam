@@ -21,14 +21,11 @@ export default class Chef extends AbstractTower {
         down: 'chef_front',
         left: 'chef_left',
         right: 'chef_right',
+        ammo: '',
       },
     });
 
     this.anchor.set(0, 0.45);
-  }
-
-  update() {
-    console.warn('You should override update method on', Object.getPrototypeOf(this));
   }
 
 }
