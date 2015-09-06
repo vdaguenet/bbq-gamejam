@@ -17,15 +17,14 @@ export default class SecondInCommand extends AbstractTower {
         radius: 2,
         maxTarget: -1,
         fireRate: 60,
-        textures: {
-          up: 'secondInCommand_up',
-          right: 'secondInCommand_right',
-          down: 'secondInCommand_down',
-          left: 'secondInCommand_left',
-        },
       },
       id: 'second-in-command',
-      texture: 'secondInCommand_down',
+      textures: {
+        up: 'sousChef_front',
+        down: 'sousChef_back',
+        left: 'sousChef_left',
+        right: 'sousChef_right',
+      },
     });
   }
 

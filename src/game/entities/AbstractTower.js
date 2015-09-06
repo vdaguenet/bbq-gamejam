@@ -11,7 +11,7 @@ export default class AbstractTower extends PIXI.Sprite {
 
   constructor(options) {
 
-    super(options.texture);
+    super(Loader.getTexture(options.textures.down));
     /**
      * Stats object contain all stats of the instance Tower
      * @type {number} attack
@@ -31,12 +31,12 @@ export default class AbstractTower extends PIXI.Sprite {
     this.vector = options.vector || { x: 0, y: 0 };
     this.lastFire = 0;
     this.textures = {
-      up: Loader.getTexture(options.stats.textures.up),
-      right: Loader.getTexture(options.stats.textures.right),
-      down: Loader.getTexture(options.stats.textures.down),
-      left: Loader.getTexture(options.stats.textures.left),
+      up: Loader.getTexture(options.textures.up),
+      right: Loader.getTexture(options.textures.right),
+      down: Loader.getTexture(options.textures.down),
+      left: Loader.getTexture(options.textures.left),
     };
-    this.texture = Loader.getTexture(this.stats.textures.down);
+    this.texture = this.textures.down;
 
   }
 
@@ -96,22 +96,22 @@ export default class AbstractTower extends PIXI.Sprite {
     const angle = Math.atan2(target.y - this.y, target.x - this.x);
 
     if (angle >= Math.PI / 4 && angle < 3 * Math.PI / 4) {
-      this.texture = Loader.getTexture(this.stats.textures.up);
+      this.texture = this.textures.up;
       return;
     }
 
     if (angle >= 3 * Math.PI / 4 && angle < 5 * Math.PI / 4) {
-      this.texture = Loader.getTexture(this.stats.textures.left);
+      this.texture = this.textures.left;
       return;
     }
 
     if (angle >= 5 * Math.PI / 4 && angle < 7 * Math.PI / 4) {
-      this.texture = Loader.getTexture(this.stats.textures.down);
+      this.texture = this.textures.down;
       return;
     }
 
     if (angle >= 7 * Math.PI / 4 && angle < Math.PI / 4) {
-      this.texture = Loader.getTexture(this.stats.textures.right);
+      this.texture = this.textures.right;
       return;
     }
   }

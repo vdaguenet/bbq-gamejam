@@ -18,15 +18,14 @@ export default class MasterChef extends AbstractTower {
         radius: 1,
         maxTarget: -1,
         fireRate: 60,
-        textures: {
-          up: 'masterChef_up',
-          right: 'masterChef_right',
-          down: 'masterChef_down',
-          left: 'masterChef_left',
-        },
       },
       id: 'master-chef',
-      texture: 'masterChef_down',
+      textures: {
+        up: 'masterChef_front',
+        down: 'masterChef_back',
+        left: 'masterChef_left',
+        right: 'masterChef_right',
+      },
     });
 
   }

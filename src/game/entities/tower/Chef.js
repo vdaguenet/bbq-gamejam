@@ -17,15 +17,14 @@ export default class Chef extends AbstractTower {
         radius: 1,
         maxTarget: 2,
         fireRate: 60,
-        textures: {
-          up: 'chef_up',
-          right: 'chef_right',
-          down: 'chef_down',
-          left: 'chef_left',
-        },
       },
       id: 'chef',
-      texture: 'chef_down',
+      textures: {
+        up: 'chef_front',
+        right: 'chef_right',
+        down: 'chef_back',
+        left: 'chef_left',
+      },
     });
 
     this.anchor.set(0, 0.45);

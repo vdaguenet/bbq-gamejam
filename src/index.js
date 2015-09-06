@@ -18,15 +18,21 @@ Loader.addTextures([
   { id: 'diver_head_back', path: '/assets/images/textures/diver_head_back.png' },
   { id: 'diver_head_left', path: '/assets/images/textures/diver_head_left.png' },
   { id: 'diver_head_right', path: '/assets/images/textures/diver_head_right.png' },
-  // Master Chef
-  { id: 'masterChef', path: '/assets/images/textures/sousChef_front.png' },
-  // Second in Command
-  { id: 'secondInCommand', path: '/assets/images/textures/test.jpg' },
   // Chef
-  { id: 'chef_back', path: '/assets/images/textures/chef_back.png' },
-  { id: 'chef_right', path: '/assets/images/textures/chef_right.png' },
-  { id: 'chef_left', path: '/assets/images/textures/chef_left.png' },
   { id: 'chef_front', path: '/assets/images/textures/chef_front.png' },
+  { id: 'chef_back', path: '/assets/images/textures/chef_back.png' },
+  { id: 'chef_left', path: '/assets/images/textures/chef_left.png' },
+  { id: 'chef_right', path: '/assets/images/textures/chef_right.png' },
+  // Second in Command
+  { id: 'sousChef_front', path: '/assets/images/textures/sousChef_front.png' },
+  { id: 'sousChef_back', path: '/assets/images/textures/sousChef_back.png' },
+  { id: 'sousChef_left', path: '/assets/images/textures/sousChef_left.png' },
+  { id: 'sousChef_right', path: '/assets/images/textures/sousChef_right.png' },
+  // Master Chef
+  { id: 'masterChef_front', path: '/assets/images/textures/masterChef_front.png' },
+  { id: 'masterChef_back', path: '/assets/images/textures/masterChef_back.png' },
+  { id: 'masterChef_left', path: '/assets/images/textures/masterChef_left.png' },
+  { id: 'masterChef_right', path: '/assets/images/textures/masterChef_right.png' },
   // Base
   { id: 'base', path: '/assets/images/textures/base.png' },
   // Ennemy
