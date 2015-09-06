@@ -1,4 +1,4 @@
-export default class Player {
+class Player {
   constructor() {
     this.pseudo = '';
     this.cash = 10;
@@ -20,8 +20,6 @@ export default class Player {
 
   addTower(tower) {
     this.towers.push(tower);
-    const li = this.list.querySelector('li:first-child');
-    li.innerText = '1 tour';
   }
 
   removeTower(id) {
@@ -33,3 +31,4 @@ export default class Player {
   }
 }
 
+export default new Player();

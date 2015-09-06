@@ -5,7 +5,7 @@ import AbstractTower from '../AbstractTower';
  */
 export default class Chef extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('Chef -> constructor');
 
@@ -24,12 +24,9 @@ export default class Chef extends AbstractTower {
           left: 'chef_left',
         },
       },
-      id: options.id,
+      id: 'chef',
       texture: 'chef_down',
     });
-    // TODO define side
-    this.side = options.side;
-
   }
 
   update() {

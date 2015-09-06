@@ -5,7 +5,7 @@ import AbstractTower from '../AbstractTower';
  */
 export default class CommisChef extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('CommisChef -> constructor');
 
@@ -24,11 +24,9 @@ export default class CommisChef extends AbstractTower {
           left: 'commis_left',
         },
       },
-      id: options.id,
+      id: 'commis-chef',
       texture: 'commis_down',
     });
-    // TODO define side
-    this.side = options.side;
 
   }
 

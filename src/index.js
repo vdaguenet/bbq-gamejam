@@ -9,7 +9,6 @@ import Game from './game/Game';
 Game.appendTo(document.body);
 
 Loader.addTextures([
-  { id: 'ennemy', path: '/assets/images/textures/ennemy.png' },
   { id: 'diver', path: '/assets/images/textures/plongeurHead_front.png' },
   { id: 'commis', path: '/assets/images/textures/test.jpg' },
   { id: 'masterChef', path: '/assets/images/textures/sousChef_front.png' },
@@ -31,11 +30,12 @@ domready(() => {
 
 function bindEvents() {
   const btnStart = document.querySelector('.ButtonStart');
-  const btnTowerAdd = document.querySelector('.tower');
+  const addTowerButtons = document.querySelectorAll('.tower');
 
   on(btnStart, 'click', startGame);
-  on(btnTowerAdd, 'click', addTower);
-  on(document, 'mousemove', mousemoveHandler);
+  [].forEach.call(addTowerButtons, (addButton) => {
+    on(addButton, 'click', addTower);
+  });
 
   Mediator.on('loader:complete', () => {
     Game.init();
@@ -62,15 +62,6 @@ function startGame() {
   }
 }
 
-function mousemoveHandler(event) {
-  Game.mousemove(event.clientX, event.clientY);
-  Game.moveTower(event.clientX, event.clientY);
-}
-
 function addTower() {
   Game.addTower(this);
-}
-
-function dragTower() {
-  Game.dragTower();
 }

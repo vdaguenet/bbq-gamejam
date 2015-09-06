@@ -18,16 +18,12 @@ class Game {
     bindAll(this, 'update');
     console.log('Game - construct');
 
-    this.player;
     this.width = (level.tiles[0].length) * tileSize;
     this.height = (level.tiles.length) * tileSize;
     this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();
-    this.mouseX;
-    this.mouseY;
-    this.currentTowerMoved = false;
 
     this.enemies = [];
     this.backgroundLayer = undefined;
@@ -44,16 +40,13 @@ class Game {
 
   start(pseudo) {
     console.log('Game - start');
-    this.player = new Player();
-    this.player.setPseudo(pseudo);
-    console.log('Let\'s go ' + pseudo);
-    this.diver = new Diver('veggie');
+    Player.setPseudo(pseudo);
 
     this.update();
   }
 
   addLayers() {
-    this.backgroundLayer = new Layer(this.width, this.height, 50, level);
+    this.backgroundLayer = new Layer(this.width, this.height, level);
     this.towerLayer = new TowerLayer(this.width, this.height, 50, this.stage);
     this.stage.addChildAt(this.backgroundLayer, 0);
     this.stage.addChildAt(this.towerLayer, 1);
@@ -74,39 +67,23 @@ class Game {
   }
 
   addTower(item) {
-    const options = {
-      side: 'side',
-    };
-
     switch(item.getAttribute('data-tower')) {
     case 'diver-tower':
-      this.towerLayer.addTower(new Diver(options), { x: this.mouseX, y: this.mouseY });
+      this.towerLayer.addTower(new Diver());
       break;
     case 'clerk-tower':
-      this.towerLayer.addTower(new CommisChef(options), { x: this.mouseX, y: this.mouseY });
+      this.towerLayer.addTower(new CommisChef());
       break;
     case 'part-tower':
-      this.towerLayer.addTower(new MasterChef(options), { x: this.mouseX, y: this.mouseY });
+      this.towerLayer.addTower(new MasterChef());
       break;
     case 'second-tower':
-      this.towerLayer.addTower(new SecondInCommand(options), { x: this.mouseX, y: this.mouseY });
+      this.towerLayer.addTower(new SecondInCommand());
       break;
     case 'chief-tower':
-      this.towerLayer.addTower(new Chef(options), { x: this.mouseX, y: this.mouseY });
+      this.towerLayer.addTower(new Chef());
       break;
     }
-  }
-
-  moveTower(x, y) {
-    if (this.currentTowerMoved) {
-      this.currentTowerMoved.position.x = x - (this.currentTowerMoved.width / 2);
-      this.currentTowerMoved.position.y = y - (this.currentTowerMoved.height / 2);
-    }
-  }
-
-  mousemove(x, y) {
-    this.mouseX = x;
-    this.mouseY = y;
   }
 
   update() {

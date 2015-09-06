@@ -1,88 +1,70 @@
 import PIXI from 'pixi.js';
 import Base from 'game/entities/Base';
-import { on } from 'dom-event';
+import { on, off } from 'dom-event';
+import Game from 'game/Game';
+import { tileSize } from 'utils/levelUtils';
+import bindAll from 'lodash.bindAll';
 
 export default class TowerLayer extends PIXI.Container {
-  constructor(width, height, tileSize, stage) {
+  constructor() {
     super();
 
+    bindAll(this, 'onMouseMove', 'placeTower');
+
     this.base = new Base();
-    this.tileSize = tileSize;
     this.addBase();
     this.towers = [];
-    this.canvas;
-    this.stage = stage;
-    this.isPlacing = false;
+    this.movingTower;
   }
 
   /**
    * [addTower description]
-   * @param {AbstractTower} tower
-   * @param {Object} point x y
+   * @param {[type]} tower [description]
    */
-  addTower(tower, point) {
-    console.log(tower.texture);
-    if (!this.isPlacing) {
-      this.canvas = document.getElementsByTagName('canvas');
-      this.isPlacing = true;
-      console.log(tower.texture);
-      // create a texture from an image path
-      const texture = '/assets/images/textures/test.jpg';
-      // create a new Sprite using the texture
-      const towerLayer = new PIXI.Sprite(texture);
-      towerLayer.position.x = point.x;
-      towerLayer.position.y = point.y;
+  addTower(tower) {
+    this.movingTower = tower;
 
-      this.stage.addChild(towerLayer);
-      // Pas possible avec un on stage ?
-      on(this.canvas[0], 'mousemove', (e) => {
-        console.log('test');
-        this.onMouseMove(e, towerLayer);
-      });
-
-      on(this.canvas[0], 'click', (e) => {
-        console.log('test2');
-        this.placeTower(e, towerLayer);
-      });
-    }
-    // TODO Trouver la case correspondante au X, Y passé en paramètre et addChild la Tower correspondante
+    on(Game.renderer.view, 'mousemove', this.onMouseMove);
+    on(Game.renderer.view, 'click', this.placeTower);
   }
 
-  placeTower(e, tower) {
+  placeTower(e) {
     let x;
     let y;
-    console.log(e.clientX);
+
     const xPosition = e.clientX;
     const yPosition = e.clientY;
 
-    if ((xPosition - Math.floor(xPosition / 100) * 100) >= 50) {
-      x = (Math.floor(xPosition / 100) * 100) + 50;
+    if ((xPosition - Math.floor(xPosition / this.movingTower.height) * this.movingTower.height) >= tileSize) {
+      x = (Math.floor(xPosition / this.movingTower.height) * this.movingTower.height) + tileSize;
     }
     else {
-      x = (Math.floor(xPosition / 100) * 100);
+      x = (Math.floor(xPosition / this.movingTower.height) * this.movingTower.height);
     }
 
-    if ((yPosition - Math.floor(yPosition / 100) * 100) >= 50) {
-      y = (Math.floor(yPosition / 100) * 100) + 50;
+    if ((yPosition - Math.floor(yPosition / this.movingTower.height) * this.movingTower.height) >= tileSize) {
+      y = (Math.floor(yPosition / this.movingTower.height) * this.movingTower.height) + tileSize;
     }
     else {
-      y = (Math.floor(yPosition / 100) * 100);
+      y = (Math.floor(yPosition / this.movingTower.height) * this.movingTower.height);
     }
 
-    tower.position.x = x;
-    tower.position.y = y;
+    this.movingTower.position.x = x;
+    this.movingTower.position.y = y;
 
-    this.isPlacing = false;
+    this.addChild(this.movingTower);
+
+    off(Game.renderer.view, 'mousemove', this.onMouseMove);
+    off(Game.renderer.view, 'click', this.placeTower);
+    this.movingTower = null;
   }
 
   addBase() {
     this.addChild(this.base);
   }
 
-  onMouseMove(e, tower) {
-    if (this.isPlacing) {
-      tower.position.x = e.x - (tower.width / 2);
-      tower.position.y = e.y - (tower.height / 2);
-    }
+  onMouseMove(e) {
+    this.movingTower.position.x = e.x - (this.movingTower.width / 2);
+    this.movingTower.position.y = e.y - (this.movingTower.height / 2);
   }
 }

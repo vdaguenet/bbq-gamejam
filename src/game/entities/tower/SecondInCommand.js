@@ -5,7 +5,7 @@ import AbstractTower from '../AbstractTower';
  */
 export default class SecondInCommand extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('SecondInCommand -> constructor');
 
@@ -24,12 +24,9 @@ export default class SecondInCommand extends AbstractTower {
           left: 'secondInCommand_left',
         },
       },
-      id: options.id,
+      id: 'second-in-command',
       texture: 'secondInCommand_down',
     });
-    // TODO define side
-    this.side = options.side;
-
   }
 
   update() {

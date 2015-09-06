@@ -5,7 +5,7 @@ import AbstractTower from '../AbstractTower';
  */
 export default class MasterChef extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('MasterChef -> constructor');
 
@@ -25,11 +25,9 @@ export default class MasterChef extends AbstractTower {
           left: 'masterChef_left',
         },
       },
-      id: options.id,
+      id: 'master-chef',
       texture: 'masterChef_down',
     });
-    // TODO define side
-    this.side = options.side;
 
   }
 

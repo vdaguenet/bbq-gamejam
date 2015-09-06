@@ -5,7 +5,7 @@ import AbstractTower from '../AbstractTower';
  */
 export default class Diver extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('Diver -> constructor');
 
@@ -24,13 +24,9 @@ export default class Diver extends AbstractTower {
           left: 'diver_left',
         },
       },
-      // id: options.id,
+      id: 'diver',
       texture: 'diver_down',
     });
-    // TODO define side
-    // this.side = options.side;
-
-    console.log(this.texture);
   }
 
   update() {
