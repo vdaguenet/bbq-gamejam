@@ -1,7 +1,6 @@
 import bindAll from 'lodash.bindAll';
 import raf from 'raf';
 import Diver from './entities/tower/Diver';
-import CommisChef from './entities/tower/CommisChef';
 import MasterChef from './entities/tower/MasterChef';
 import SecondInCommand from './entities/tower/SecondInCommand';
 import Chef from './entities/tower/Chef';
@@ -71,10 +70,7 @@ class Game {
     case 'diver-tower':
       this.towerLayer.addTower(new Diver());
       break;
-    case 'clerk-tower':
-      this.towerLayer.addTower(new CommisChef());
-      break;
-    case 'part-tower':
+    case 'master-tower':
       this.towerLayer.addTower(new MasterChef());
       break;
     case 'second-tower':

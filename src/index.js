@@ -18,14 +18,15 @@ Loader.addTextures([
   { id: 'diver_head_back', path: '/assets/images/textures/diver_head_back.png' },
   { id: 'diver_head_left', path: '/assets/images/textures/diver_head_left.png' },
   { id: 'diver_head_right', path: '/assets/images/textures/diver_head_right.png' },
-  // Commis
-  { id: 'commis', path: '/assets/images/textures/test.jpg' },
   // Master Chef
   { id: 'masterChef', path: '/assets/images/textures/sousChef_front.png' },
   // Second in Command
   { id: 'secondInCommand', path: '/assets/images/textures/test.jpg' },
   // Chef
-  { id: 'chef', path: '/assets/images/textures/chef_front.png' },
+  { id: 'chef_back', path: '/assets/images/textures/chef_back.png' },
+  { id: 'chef_right', path: '/assets/images/textures/chef_right.png' },
+  { id: 'chef_left', path: '/assets/images/textures/chef_left.png' },
+  { id: 'chef_front', path: '/assets/images/textures/chef_front.png' },
   // Base
   { id: 'base', path: '/assets/images/textures/base.png' },
   // Ennemy

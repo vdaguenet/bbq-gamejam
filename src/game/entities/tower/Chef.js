@@ -20,8 +20,10 @@ export default class Chef extends AbstractTower {
         fireRate: 60,
       },
       id: 'chef',
-      texture: Loader.getTexture('chef'),
+      texture: Loader.getTexture('chef_left'),
     });
+
+    this.anchor.set(0, 0.45);
   }
 
   update() {
