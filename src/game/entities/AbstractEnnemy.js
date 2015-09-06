@@ -1,4 +1,5 @@
 import PIXI from 'pixi.js';
+import LifeBar from 'game/LifeBar';
 
 /**
  * AbstractEnnemy class
@@ -21,14 +22,30 @@ export default class AbstractEnnemy extends PIXI.Sprite {
     this.id = options.id;
     this.deletable = false;
     this.velocity = 0;
+
+    this.lifeBar = new LifeBar(this.stats.life);
+    this.lifeBar.position.y = -35;
+    this.addChild(this.lifeBar);
   }
 
-  update() {
-    console.warn('You should override update method on', Object.getPrototypeOf(this));
+  fight() {
+    // TODO Attack base
+    console.log('Enemy - fight');
   }
 
-  // TODO Attack base
+  endureDamages(damage) {
+    this.stats.life -= damage;
 
-  // TODO Walk through path
+    if (this.stats.life <= 0) {
+      this.die();
+      return;
+    }
+
+    this.lifeBar.update(this.stats.life);
+  }
+
+  die() {
+    this.deletable = true;
+  }
 
 }

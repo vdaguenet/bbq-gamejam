@@ -25,6 +25,7 @@ class Game {
     this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {
       view: document.getElementById('canvas'),
       backgroundColor: 0x1099bb,
+      antialias: true,
     });
     this.stage = new PIXI.Container();
     this.enemies = [];
@@ -96,9 +97,7 @@ class Game {
       this.lastUpdate = now;
 
       // TODO: update all the entities
-      this.enemies.forEach((e) => {
-        e.update(elapsed);
-      });
+      this.updateEnnemies(elapsed);
 
       this.checkCollision(Player.towers);
       this.render();
@@ -109,6 +108,20 @@ class Game {
     }
 
     raf(this.update);
+  }
+
+  updateEnnemies(elapsed) {
+    let i = 0;
+    this.enemies.forEach((e) => {
+      if (e.deletable) {
+        this.stage.removeChildAt(this.stage.getChildIndex(e));
+        this.enemies.splice(i, 1);
+        e.destroy();
+      } else {
+        e.update(elapsed);
+      }
+      i++;
+    });
   }
 
   checkCollision(towers) {
@@ -122,7 +135,7 @@ class Game {
             && bullet.y >= enemy.y
             && bullet.y <= enemy.y + enemy.height) {
             bullet.deletable = true;
-            enemy.deletable = true;
+            enemy.endureDamages(tower.stats.attack);
             // TODO add points ?
           }
         });

@@ -94,8 +94,4 @@ export default class Ennemy extends AbstractEnnemy {
     this.direction = '';
     this.texture = Loader.getTexture('ennemy_right');
   }
-
-  fight() {
-    console.log('Enemy - fight');
-  }
 }
