@@ -5,8 +5,6 @@ import Loader from './utils/Loader';
 import Mediator from './utils/Mediator';
 
 import Game from './game/Game';
-// const game = new Game();
-Game.appendTo(document.body);
 
 Loader.addTextures([
   // Diver
@@ -50,12 +48,11 @@ Loader.addTextures([
 ]);
 
 domready(() => {
-  console.log('Hello world!');
   bindEvents();
 });
 
 function bindEvents() {
-  const btnStart = document.querySelector('.ButtonStart');
+  const btnStart = document.querySelector('.button-start');
   const addTowerButtons = document.querySelectorAll('.tower');
 
   on(btnStart, 'click', startGame);
@@ -63,31 +60,30 @@ function bindEvents() {
     on(addButton, 'click', addTower);
   });
 
+  Mediator.on('game:over', stopGame);
+
   Mediator.on('loader:complete', () => {
     Game.init();
   });
 }
 
 function startGame() {
-  const pseudo = document.getElementById('pseudo');
-  const error = document.querySelector('.error-message');
   const stepOne = document.querySelector('.step-one');
   const stepTwo = document.querySelector('.step-two');
 
-  if (pseudo.value.length > 0) {
-    pseudo.setAttribute('class', '');
-    error.setAttribute('class', 'error-message');
-    Mediator.emit('game:start');
-    stepOne.setAttribute('class', 'step-one');
-    stepTwo.setAttribute('class', 'step-two active');
-    Game.start(pseudo.value);
-  }
-  else {
-    pseudo.setAttribute('class', 'error');
-    error.setAttribute('class', 'error-message active');
-  }
+  stepOne.setAttribute('class', 'step step-one');
+  stepTwo.setAttribute('class', 'step step-two active');
+
+  Mediator.emit('game:start');
+  Game.start();
 }
 
 function addTower() {
   Game.addTower(this);
+}
+
+function stopGame() {
+  const endContainer = document.querySelector('.game-over-container');
+
+  endContainer.className += ' active';
 }

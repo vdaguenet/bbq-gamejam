@@ -1,13 +1,7 @@
 class Player {
   constructor() {
-    this.pseudo = '';
     this.cash = 10;
     this.towers = [];
-    this.list = document.querySelector('.tower-list');
-  }
-
-  setPseudo(pseudo) {
-    this.pseudo = pseudo;
   }
 
   addCash(cash) {

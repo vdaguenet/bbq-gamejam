@@ -7,23 +7,48 @@
 </head>
 <body>
 
+  <div class="step step-one active">
+    <a class="button-start">Start</a>
+  </div>
+
   <div id="view">
-    <h1>Tower Defense !</h1>
-
-    <div class="step step-one active">
-      <p class="error-message">Sans pseudo, jouer, tu ne peux...</p>
-      <input id="pseudo" type="text" placeholder="pseudo"></input>
-
-      <a class="ButtonStart">Start</a>
-    </div>
-
     <div class="step step-two">
-      <ul class="tower-list">
-        <li class="tower" data-tower="diver-tower">Ajouter un Plongeur</li>
-        <li class="tower" data-tower="chief-tower">Ajouter un Chef de partie</li>
-        <li class="tower" data-tower="second-tower">Ajouter un Sous-Chef</li>
-        <li class="tower" data-tower="master-tower">Ajouter un Chef</li>
-      </ul>
+      <div class="tower" data-tower="diver-tower">
+        <img src="/assets/images/plongeur.png" class="tower-icon">
+        <h3>Plongeur</h3>
+        <ul>
+          <li>Attaque: 2</li>
+          <li>Précision: 70%</li>
+          <li>Coût: 5</li>
+        </ul>
+      </div>
+      <div class="tower" data-tower="chief-tower">
+        <img src="/assets/images/chefPartie.png" class="tower-icon">
+        <h3>Chef de partie</h3>
+        <ul>
+          <li>Attaque: 8</li>
+          <li>Précision: 70%</li>
+          <li>Coût: 12</li>
+        </ul>
+      </div>
+      <div class="tower" data-tower="second-tower">
+        <img src="/assets/images/sschef.png" class="tower-icon">
+        <h3>Sous chef</h3>
+        <ul>
+          <li>Attaque: 16</li>
+          <li>Précision: 70%</li>
+          <li>Coût: 19</li>
+        </ul>
+      </div>
+      <div class="tower" data-tower="master-tower">
+        <img src="/assets/images/chef.png" class="tower-icon">
+        <h3>Chef</h3>
+        <ul>
+          <li>Attaque: 32</li>
+          <li>Précision: 07</li>
+          <li>Coût: 26</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -32,7 +57,7 @@
   </div>
 
   <div class="game-over-container">
-    <h1>You loose!</h1>
+
   </div>
 
   <script src="./build/main.js"></script>

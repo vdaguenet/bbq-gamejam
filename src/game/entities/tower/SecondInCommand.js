@@ -6,9 +6,6 @@ import AbstractTower from '../AbstractTower';
 export default class SecondInCommand extends AbstractTower {
 
   constructor() {
-
-    console.log('SecondInCommand -> constructor');
-
     super({
       stats: {
         attack: 16,

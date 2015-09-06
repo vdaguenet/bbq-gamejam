@@ -6,9 +6,6 @@ import AbstractTower from '../AbstractTower';
 export default class Chef extends AbstractTower {
 
   constructor() {
-
-    console.log('Chef -> constructor');
-
     super({
       stats: {
         attack: 8,

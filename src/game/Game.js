@@ -18,13 +18,12 @@ const MAX_ENEMIES = 7;
 class Game {
   constructor() {
     bindAll(this, 'update');
-    console.log('Game - construct');
 
     this.width = (level.tiles[0].length) * tileSize;
     this.height = (level.tiles.length) * tileSize;
     this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {
       view: document.getElementById('canvas'),
-      backgroundColor: 0x1099bb,
+      backgroundColor: 0xbb9a77,
       antialias: true,
     });
     this.stage = new PIXI.Container();
@@ -36,21 +35,17 @@ class Game {
   }
 
   init() {
-    console.log('Game - init', this.width);
     // TODO: init the game
     this.addLayers();
   }
 
-  start(pseudo) {
-    console.log('Game - start');
-    Player.setPseudo(pseudo);
+  start() {
     this.populateEnemies();
 
     this.update();
   }
 
   stop() {
-    console.log('Game - stop');
     raf.cancel(this.raf);
     this.isOver = true;
   }
