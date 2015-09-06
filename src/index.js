@@ -61,6 +61,8 @@ function bindEvents() {
   });
 
   Mediator.on('game:over', stopGame);
+  Mediator.on('cash:update', updateCash);
+  Mediator.on('score:update', updateScore);
 
   Mediator.on('loader:complete', () => {
     Game.init();
@@ -80,6 +82,16 @@ function startGame() {
 
 function addTower() {
   Game.addTower(this);
+}
+
+function updateCash(value) {
+  const cashEl = document.getElementById('cash');
+  cashEl.innerHTML = value;
+}
+
+function updateScore(value) {
+  const scoreEl = document.getElementById('score');
+  scoreEl.innerHTML = value;
 }
 
 function stopGame() {

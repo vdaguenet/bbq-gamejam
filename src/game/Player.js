@@ -1,18 +1,31 @@
+import Mediator from 'utils/Mediator';
+
 class Player {
   constructor() {
-    this.cash = 10;
+    this.cash = 50;
+    this.score = 0;
     this.towers = [];
   }
 
   addCash(cash) {
     this.cash += cash;
+    Mediator.emit('cash:update', this.cash);
   }
 
   removeCash(cash) {
     this.cash -= cash;
+    Mediator.emit('cash:update', this.cash);
+  }
+
+  addScore(value) {
+    this.score += value;
+    this.addCash(0.5 * value);
+    Mediator.emit('score:update', this.score);
   }
 
   addTower(tower) {
+    if (this.cash < tower.stats.cost) return;
+
     this.towers.push(tower);
   }
 

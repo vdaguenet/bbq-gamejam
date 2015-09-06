@@ -2,6 +2,7 @@ import PIXI from 'pixi.js';
 import Base from 'game/entities/Base';
 import { on, off } from 'dom-event';
 import Game from 'game/Game';
+import Player from 'game/Player';
 import { tileSize, findNearestTile } from 'utils/levelUtils';
 import bindAll from 'lodash.bindAll';
 
@@ -45,6 +46,8 @@ export default class TowerLayer extends PIXI.Container {
     this.movingTower.position.y = nearestTile.y * tileSize;
 
     this.addChild(this.movingTower);
+
+    Player.removeCash(this.movingTower.stats.cost);
 
     off(Game.renderer.view, 'mousemove', this.onMouseMove);
     off(Game.renderer.view, 'click', this.placeTower);

@@ -58,7 +58,7 @@ export default class AbstractTower extends PIXI.Sprite {
 
   attack(target, vector) {
     if (Math.random() < this.stats.precision) {
-      target.hp -= this.stats.attack;
+      target.endureDamages(this.stats.attack);
       this.addBullet(vector);
     }
     else {
