@@ -2,7 +2,7 @@ import PIXI from 'pixi.js';
 import Base from 'game/entities/Base';
 import { on, off } from 'dom-event';
 import Game from 'game/Game';
-import { tileSize } from 'utils/levelUtils';
+import { tileSize, findNearestTile } from 'utils/levelUtils';
 import bindAll from 'lodash.bindAll';
 
 export default class TowerLayer extends PIXI.Container {
@@ -29,28 +29,12 @@ export default class TowerLayer extends PIXI.Container {
   }
 
   placeTower(e) {
-    let x;
-    let y;
+    const xPosition = e.clientX - Game.renderer.view.getBoundingClientRect().left;
+    const yPosition = e.clientY - Game.renderer.view.getBoundingClientRect().top;
+    const nearestTile = findNearestTile(xPosition, yPosition);
 
-    const xPosition = e.clientX;
-    const yPosition = e.clientY;
-
-    if ((xPosition - Math.floor(xPosition / this.movingTower.height) * this.movingTower.height) >= tileSize) {
-      x = (Math.floor(xPosition / this.movingTower.height) * this.movingTower.height) + tileSize;
-    }
-    else {
-      x = (Math.floor(xPosition / this.movingTower.height) * this.movingTower.height);
-    }
-
-    if ((yPosition - Math.floor(yPosition / this.movingTower.height) * this.movingTower.height) >= tileSize) {
-      y = (Math.floor(yPosition / this.movingTower.height) * this.movingTower.height) + tileSize;
-    }
-    else {
-      y = (Math.floor(yPosition / this.movingTower.height) * this.movingTower.height);
-    }
-
-    this.movingTower.position.x = x;
-    this.movingTower.position.y = y;
+    this.movingTower.position.x = nearestTile.x * tileSize;
+    this.movingTower.position.y = nearestTile.y * tileSize;
 
     this.addChild(this.movingTower);
 
