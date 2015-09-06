@@ -31,10 +31,10 @@ export default class Diver extends AbstractTower {
     });
 
     this.head = new PIXI.Sprite(Loader.getTexture('diver_head_left'));
-    this.head.anchor.set(-0.3, 0.5);
+    this.head.anchor.set(-0.28, 0.52);
     this.addChild(this.head);
 
-    this.anchor.set(-0.3, 0.5);
+    this.anchor.set(-0.2, 0.5);
   }
 
   update() {

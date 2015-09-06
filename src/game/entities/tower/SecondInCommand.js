@@ -26,6 +26,8 @@ export default class SecondInCommand extends AbstractTower {
         right: 'sousChef_right',
       },
     });
+
+    this.anchor.set(0, 0.52);
   }
 
   update() {

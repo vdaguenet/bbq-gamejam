@@ -28,6 +28,8 @@ export default class MasterChef extends AbstractTower {
       },
     });
 
+    this.anchor.set(0, 0.2);
+
   }
 
   update() {
