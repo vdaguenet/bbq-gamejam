@@ -21,6 +21,7 @@ class Game {
     this.width = (level.tiles[0].length) * tileSize;
     this.height = (level.tiles.length) * tileSize;
     this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {
+      view: document.getElementById('canvas'),
       backgroundColor: 0x1099bb,
     });
     this.stage = new PIXI.Container();

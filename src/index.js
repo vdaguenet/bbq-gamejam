@@ -6,7 +6,7 @@ import Mediator from './utils/Mediator';
 
 import Game from './game/Game';
 // const game = new Game();
-Game.appendTo(document.body);
+// Game.appendTo(document.body);
 
 Loader.addTextures([
   { id: 'diver', path: '/assets/images/textures/plongeurHead_front.png' },

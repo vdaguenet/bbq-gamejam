@@ -1,0 +1,39 @@
+.game-container
+  position absolute
+  width 1080px
+  height 720px
+  background-image url('/assets/images/background.png')
+  top: 50%
+  margin-top -360px
+  // left: 50%
+  // margin-left -540px
+
+  &:before
+    content ''
+    display block
+    position absolute
+    top -41px
+    left 120px
+    width 386px
+    height 232px
+    // background rgba(255, 0, 0, 0.5)
+    background-image url('/assets/images/cupTea.png')
+    z-index 1
+
+  &:after
+    content ''
+    display block
+    position absolute
+    bottom 100px
+    right 100px
+    width 283px
+    height 88px
+    // background rgba(0, 0, 255, 0.5)
+    background-image url('/assets/images/spoon.png')
+    z-index 1
+
+.game-renderer
+  position: absolute;
+  top: 30px;
+  left: 92px;
+  z-index 0
