@@ -11,13 +11,14 @@ export default class Bullet extends PIXI.Sprite {
 
     this.x = x;
     this.y = y;
+    this.velocity = 50;
     this.vector = vector;
     this.deletable = false;
   }
 
-  update() {
-    this.x += this.vector.x;
-    this.y += this.vector.y;
+  update(elapsed) {
+    this.x += this.vector.x * this.velocity * elapsed;
+    this.y += this.vector.y * this.velocity * elapsed;
     this.checkOffScreenPosition();
   }
 

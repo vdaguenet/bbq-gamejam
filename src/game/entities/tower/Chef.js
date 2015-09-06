@@ -13,7 +13,7 @@ export default class Chef extends AbstractTower {
         cost: 12,
         radius: 1,
         maxTarget: 2,
-        fireRate: 60,
+        fireRate: 1000,
       },
       id: 'chef',
       textures: {
