@@ -139,7 +139,7 @@ class Game {
         e.destroy();
 
         if (this.enemies.length === 0) {
-          setTimeout(function() {
+          setTimeout(() => {
             this.round += 1;
             MAX_ENEMIES += 2;
             this.populateEnemies();
