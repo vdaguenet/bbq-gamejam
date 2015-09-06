@@ -33,6 +33,7 @@ class Game {
     this.raf;
     this.round = 1;
     this.roundMaxEnemies = 3;
+    this.audio;
   }
 
   init() {
@@ -41,7 +42,7 @@ class Game {
 
   start() {
     this.populateEnemies();
-    this.startMusic();
+    this.startMusic('start');
 
     this.update();
   }
@@ -49,11 +50,19 @@ class Game {
   stop() {
     raf.cancel(this.raf);
     this.isOver = true;
+    this.startMusic('stop');
   }
 
-  startMusic() {
-    const audio = new Audio('assets/music/music.mp3');
-    audio.play();
+  startMusic(toggle) {
+    if (toggle === 'start') {
+      this.audio = new Audio('assets/music/music.mp3');
+      this.audio.play();
+    }
+    else {
+      this.audio.pause();
+      this.audio = new Audio('assets/music/loose.mp3');
+      this.audio.play();
+    }
   }
 
   addLayers() {
