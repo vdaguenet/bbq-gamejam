@@ -41,7 +41,7 @@ class Game {
   }
 
   start() {
-    this.populateEnemies();
+    // this.populateEnemies();
 
     this.update();
   }
