@@ -32,7 +32,7 @@ class Game {
     this.isOver = false;
     this.lastUpdate = null;
     this.raf;
-    this.round = 0;
+    this.round = 1;
   }
 
   init() {
@@ -59,11 +59,15 @@ class Game {
   }
 
   populateEnemies() {
+    const round = document.querySelector('.round');    
     const tileStart = {
       x: 0,
       y: 5,
     };
 
+    round.innerText = 'Round ' + this.round;
+    round.parentNode.setAttribute('class', 'round-container active');
+    
     const enemiesInterval = setInterval(() => {
       const e = new Enemy({
         id: 'test' + Math.random(),
@@ -139,7 +143,7 @@ class Game {
         e.destroy();
 
         if (this.enemies.length === 0) {
-          setTimeout(function() {
+          setTimeout( () => {
             this.round += 1;
             MAX_ENEMIES += 2;
             this.populateEnemies();
