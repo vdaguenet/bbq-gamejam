@@ -6,7 +6,7 @@ import Loader from 'utils/Loader';
  */
 export default class Chef extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('Chef -> constructor');
 
@@ -19,12 +19,9 @@ export default class Chef extends AbstractTower {
         maxTarget: 2,
         fireRate: 60,
       },
-      id: options.id,
+      id: 'chef',
       texture: Loader.getTexture('chef'),
     });
-    // TODO define side
-    this.side = options.side;
-
   }
 
   update() {

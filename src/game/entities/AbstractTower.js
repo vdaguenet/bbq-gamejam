@@ -10,7 +10,7 @@ export default class AbstractTower extends PIXI.Sprite {
 
   constructor(options) {
 
-    super();
+    super(options.texture);
     /**
      * Stats object contain all stats of the instance Tower
      * @type {number} attack
@@ -25,7 +25,6 @@ export default class AbstractTower extends PIXI.Sprite {
 
     this.id = options.id;
     this.currentTargets = [];
-    this.position = options.position || { x: 0, y: 0 };
     this.bullets = [];
     this.vector = options.vector || { x: 0, y: 0 };
     this.lastFire = 0;

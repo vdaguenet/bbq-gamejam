@@ -20,14 +20,12 @@ class Loader extends PIXI.loaders.Loader {
   }
 
   onLoaded() {
-    Mediator.emit('loader:complete');
     console.log('Loader - complete');
+    Mediator.emit('loader:complete');
   }
 
   getTexture(id) {
     if (!this.resources[id]) return;
-    console.log(this.resources[id]);
-    console.log(this.resources[id].texture);
     return this.resources[id].texture;
   }
 }

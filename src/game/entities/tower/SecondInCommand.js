@@ -6,7 +6,7 @@ import Loader from 'utils/Loader';
  */
 export default class SecondInCommand extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('SecondInCommand -> constructor');
 
@@ -19,12 +19,9 @@ export default class SecondInCommand extends AbstractTower {
         maxTarget: -1,
         fireRate: 60,
       },
-      id: options.id,
+      id: 'second-in-command',
       texture: Loader.getTexture('secondInCommand'),
     });
-    // TODO define side
-    this.side = options.side;
-
   }
 
   update() {

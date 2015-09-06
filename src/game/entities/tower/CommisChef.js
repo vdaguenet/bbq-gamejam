@@ -6,7 +6,7 @@ import Loader from 'utils/Loader';
  */
 export default class CommisChef extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('CommisChef -> constructor');
 
@@ -19,11 +19,9 @@ export default class CommisChef extends AbstractTower {
         maxTarget: 1,
         fireRate: 60,
       },
-      id: options.id,
+      id: 'commis-chef',
       texture: Loader.getTexture('commis'),
     });
-    // TODO define side
-    this.side = options.side;
 
   }
 

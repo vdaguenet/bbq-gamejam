@@ -20,11 +20,9 @@ export default class MasterChef extends AbstractTower {
         maxTarget: -1,
         fireRate: 60,
       },
-      id: options.id,
+      id: 'master-chef',
       texture: Loader.getTexture('masterChef'),
     });
-    // TODO define side
-    this.side = options.side;
 
   }
 

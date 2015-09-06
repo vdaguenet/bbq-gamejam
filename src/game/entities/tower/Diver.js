@@ -6,7 +6,7 @@ import Loader from 'utils/Loader';
  */
 export default class Diver extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('Diver -> constructor');
 
@@ -19,13 +19,9 @@ export default class Diver extends AbstractTower {
         maxTarget: 1,
         fireRate: 60,
       },
-      //id: options.id,
+      id: 'diver',
       texture: Loader.getTexture('diver'),
     });
-    // TODO define side
-    //this.side = options.side;
-
-    console.log(this.texture);
   }
 
   update() {
