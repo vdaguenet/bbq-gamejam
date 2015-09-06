@@ -1,5 +1,6 @@
 import PIXI from 'pixi.js';
 import LifeBar from 'game/LifeBar';
+import Player from 'game/Player';
 
 /**
  * AbstractEnnemy class
@@ -49,6 +50,7 @@ export default class AbstractEnnemy extends PIXI.Sprite {
   }
 
   die() {
+    Player.addScore(10);
     this.deletable = true;
   }
 

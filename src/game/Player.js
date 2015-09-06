@@ -9,20 +9,18 @@ class Player {
 
   addCash(cash) {
     this.cash += cash;
+    Mediator.emit('cash:update', this.cash);
   }
 
   removeCash(cash) {
     this.cash -= cash;
+    Mediator.emit('cash:update', this.cash);
   }
 
   addScore(value) {
     this.score += value;
+    this.addCash(0.5 * value);
     Mediator.emit('score:update', this.score);
-  }
-
-  updateCash(value) {
-    this.cash -= value;
-    Mediator.emit('cash:update', this.cash);
   }
 
   addTower(tower) {

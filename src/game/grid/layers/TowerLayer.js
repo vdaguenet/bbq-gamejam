@@ -47,7 +47,7 @@ export default class TowerLayer extends PIXI.Container {
 
     this.addChild(this.movingTower);
 
-    Player.updateCash(this.movingTower.stats.cost);
+    Player.removeCash(this.movingTower.stats.cost);
 
     off(Game.renderer.view, 'mousemove', this.onMouseMove);
     off(Game.renderer.view, 'click', this.placeTower);
