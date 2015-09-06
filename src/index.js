@@ -3,8 +3,9 @@ import domready from 'domready';
 import { on } from 'dom-event';
 import Loader from './utils/Loader';
 import Mediator from './utils/Mediator';
-
+import classes from 'dom-classes';
 import Game from './game/Game';
+import Player from 'game/Player';
 
 Loader.addTextures([
   // Diver
@@ -49,6 +50,7 @@ Loader.addTextures([
 
 domready(() => {
   bindEvents();
+  updateCash(Player.cash);
 });
 
 function bindEvents() {
@@ -73,8 +75,8 @@ function startGame() {
   const stepOne = document.querySelector('.step-one');
   const stepTwo = document.querySelector('.step-two');
 
-  stepOne.setAttribute('class', 'step step-one');
-  stepTwo.setAttribute('class', 'step step-two active');
+  classes.remove(stepOne, 'active');
+  classes.add(stepTwo, 'active');
 
   Mediator.emit('game:start');
   Game.start();
@@ -87,6 +89,16 @@ function addTower() {
 function updateCash(value) {
   const cashEl = document.getElementById('cash');
   cashEl.innerHTML = value;
+
+  const towers = document.querySelectorAll('.tower');
+  [].forEach.call(towers, (tower) => {
+    if (~~tower.getAttribute('data-tower-cost') > value) {
+      classes.add(tower, 'disable');
+    } else {
+      classes.remove(tower, 'disable');
+    }
+  });
+
 }
 
 function updateScore(value) {
@@ -96,6 +108,5 @@ function updateScore(value) {
 
 function stopGame() {
   const endContainer = document.querySelector('.game-over-container');
-
-  endContainer.className += ' active';
+  classes.add(endContainer, 'active');
 }

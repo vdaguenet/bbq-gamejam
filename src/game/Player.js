@@ -2,7 +2,7 @@ import Mediator from 'utils/Mediator';
 
 class Player {
   constructor() {
-    this.cash = 50;
+    this.cash = 5;
     this.score = 0;
     this.towers = [];
   }
@@ -19,7 +19,7 @@ class Player {
 
   addScore(value) {
     this.score += value;
-    this.addCash(0.5 * value);
+    this.addCash(0.2 * value);
     Mediator.emit('score:update', this.score);
   }
 
