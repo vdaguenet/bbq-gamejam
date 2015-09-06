@@ -17,7 +17,7 @@ export default class MasterChef extends AbstractTower {
         distAttack: 3,
         radius: 1,
         maxTarget: -1,
-        fireRate: 1000,
+        fireRate: 2000,
       },
       id: 'master-chef',
       textures: {
