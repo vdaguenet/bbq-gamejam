@@ -1,5 +1,4 @@
 import AbstractTower from '../AbstractTower';
-import Loader from 'utils/Loader';
 /**
  * SecondInCommand class
  * Strong tower
@@ -20,7 +19,12 @@ export default class SecondInCommand extends AbstractTower {
         fireRate: 60,
       },
       id: 'second-in-command',
-      texture: Loader.getTexture('secondInCommand'),
+      textures: {
+        up: 'sousChef_front',
+        down: 'sousChef_back',
+        left: 'sousChef_left',
+        right: 'sousChef_right',
+      },
     });
   }
 

@@ -1,12 +1,11 @@
 import AbstractTower from '../AbstractTower';
-import Loader from 'utils/Loader';
 /**
  * MasterChef class
  * Master tower
  */
 export default class MasterChef extends AbstractTower {
 
-  constructor(options) {
+  constructor() {
 
     console.log('MasterChef -> constructor');
 
@@ -21,7 +20,12 @@ export default class MasterChef extends AbstractTower {
         fireRate: 60,
       },
       id: 'master-chef',
-      texture: Loader.getTexture('masterChef'),
+      textures: {
+        up: 'masterChef_front',
+        down: 'masterChef_back',
+        left: 'masterChef_left',
+        right: 'masterChef_right',
+      },
     });
 
   }

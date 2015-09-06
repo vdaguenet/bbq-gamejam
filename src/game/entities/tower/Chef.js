@@ -1,5 +1,4 @@
 import AbstractTower from '../AbstractTower';
-import Loader from 'utils/Loader';
 /**
  * Chef class
  * Medium tower
@@ -20,8 +19,15 @@ export default class Chef extends AbstractTower {
         fireRate: 60,
       },
       id: 'chef',
-      texture: Loader.getTexture('chef'),
+      textures: {
+        up: 'chef_front',
+        right: 'chef_right',
+        down: 'chef_back',
+        left: 'chef_left',
+      },
     });
+
+    this.anchor.set(0, 0.45);
   }
 
   update() {

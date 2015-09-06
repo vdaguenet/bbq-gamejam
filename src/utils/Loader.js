@@ -25,7 +25,10 @@ class Loader extends PIXI.loaders.Loader {
   }
 
   getTexture(id) {
-    if (!this.resources[id]) return;
+    if (!this.resources[id]) {
+      return console.error(`Can not find texture ${id}`);
+    }
+
     return this.resources[id].texture;
   }
 }
