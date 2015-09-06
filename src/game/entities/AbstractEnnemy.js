@@ -30,8 +30,6 @@ export default class AbstractEnnemy extends PIXI.Sprite {
   }
 
   fight() {
-    console.log('Enemy - fight');
-
     const randPreci = Math.random();
     if (randPreci <= this.stats.precision) {
       const valueFight = Math.random() * (this.stats.maxAttack - this.stats.minAttack) + this.stats.minAttack;

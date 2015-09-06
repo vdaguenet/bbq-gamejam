@@ -20,7 +20,6 @@ class Loader extends PIXI.loaders.Loader {
   }
 
   onLoaded() {
-    console.log('Loader - complete');
     Mediator.emit('loader:complete');
   }
 

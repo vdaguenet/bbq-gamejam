@@ -18,7 +18,6 @@ export default class Base extends PIXI.Sprite {
     this.x = 16 * this.tileSize;
     this.y = 3 * this.tileSize;
     this.anchor = new PIXI.Point(0, 0);
-    console.log('Base -> constructor');
 
     this.life = 100;
 

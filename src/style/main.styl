@@ -7,7 +7,6 @@
 /*----------------------------------------------------------------------
     BASE
 ----------------------------------------------------------------------*/
-@import "./config/**/*"
 reset()
 
 html
@@ -26,14 +25,13 @@ body
   position absolute
   right 0
   top 0
-  background skyblue
+  background white
   z-index 10
-  width calc(100% - 1080px);
+  width calc(100% - 1025px)
+  color #bb9a77
 
 canvas
   display block
-  // margin 0 auto
-
 
 /*----------------------------------------------------------------------
     HOME
@@ -43,6 +41,14 @@ canvas
   display none
   &.active
     display block
+
+  &-one
+    @extend .full-size
+    position fixed
+    z-index 15
+    background url('/assets/images/versus.png')
+    background-size cover
+    background-position 0 90%
 
 .pseudo.error
   border 1px solid red
