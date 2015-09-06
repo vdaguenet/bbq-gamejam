@@ -21,8 +21,8 @@ export default class MasterChef extends AbstractTower {
       },
       id: 'master-chef',
       textures: {
-        up: 'masterChef_front',
-        down: 'masterChef_back',
+        up: 'masterChef_back',
+        down: 'masterChef_front',
         left: 'masterChef_left',
         right: 'masterChef_right',
       },

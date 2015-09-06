@@ -20,8 +20,8 @@ export default class SecondInCommand extends AbstractTower {
       },
       id: 'second-in-command',
       textures: {
-        up: 'sousChef_front',
-        down: 'sousChef_back',
+        up: 'sousChef_back',
+        down: 'sousChef_front',
         left: 'sousChef_left',
         right: 'sousChef_right',
       },

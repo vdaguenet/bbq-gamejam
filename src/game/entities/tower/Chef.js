@@ -20,10 +20,10 @@ export default class Chef extends AbstractTower {
       },
       id: 'chef',
       textures: {
-        up: 'chef_front',
-        right: 'chef_right',
-        down: 'chef_back',
+        up: 'chef_back',
+        down: 'chef_front',
         left: 'chef_left',
+        right: 'chef_right',
       },
     });
 

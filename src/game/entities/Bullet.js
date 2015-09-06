@@ -13,7 +13,6 @@ export default class Bullet {
   }
 
   update() {
-    // TODO turn deletable to true if bullet pass through screen edges
     this.x += this.vector.x;
     this.y += this.vector.y;
     this.checkOffScreenPosition();
