@@ -27,7 +27,7 @@ export default class TowerLayer extends PIXI.Container {
       this.isPlacing = true;
       console.log(tower.texture);
       // create a texture from an image path
-      const texture = '/assets/images/textures/test.jpg';
+      const texture = PIXI.Texture.fromImage('/assets/images/textures/plongeurHead_front.png');
       // create a new Sprite using the texture
       const towerLayer = new PIXI.Sprite(texture);
       towerLayer.position.x = point.x;
