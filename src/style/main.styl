@@ -19,8 +19,7 @@ html
 
 body
   @extend .full-size
-  background-image url('/assets/images/background.png')
-  background-size contain
+  background-color #ba864c
 
 #view
   height 100%
@@ -28,6 +27,8 @@ body
   right 0
   top 0
   background skyblue
+  z-index 10
+  width calc(100% - 1080px);
 
 canvas
   display block
