@@ -9,9 +9,6 @@ import PIXI from 'pixi.js';
 export default class Diver extends AbstractTower {
 
   constructor() {
-
-    console.log('Diver -> constructor');
-
     super({
       stats: {
         attack: 2,
