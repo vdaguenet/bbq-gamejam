@@ -13,7 +13,7 @@ import level from './levels/level1.json';
 import { tileSize } from 'utils/levelUtils';
 import clone from 'clone';
 
-const MAX_ENEMIES = 7;
+let MAX_ENEMIES = 3;
 
 class Game {
   constructor() {
@@ -32,6 +32,7 @@ class Game {
     this.isOver = false;
     this.lastUpdate = null;
     this.raf;
+    this.round = 0;
   }
 
   init() {
@@ -136,6 +137,14 @@ class Game {
         this.stage.removeChildAt(this.stage.getChildIndex(e));
         this.enemies.splice(i, 1);
         e.destroy();
+
+        if (this.enemies.length === 0) {
+          setTimeout(function() {
+            this.round += 1;
+            MAX_ENEMIES += 2;
+            this.populateEnemies();
+          }, 5000);
+        }
       }
       else {
         e.update(elapsed);
