@@ -41,6 +41,7 @@ class Game {
 
   start() {
     this.populateEnemies();
+    this.startMusic();
 
     this.update();
   }
@@ -48,6 +49,11 @@ class Game {
   stop() {
     raf.cancel(this.raf);
     this.isOver = true;
+  }
+
+  startMusic() {
+    const audio = new Audio('assets/music/music.mp3');
+    audio.play();
   }
 
   addLayers() {
