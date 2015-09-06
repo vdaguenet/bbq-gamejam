@@ -9,13 +9,19 @@ import Game from './game/Game';
 Game.appendTo(document.body);
 
 Loader.addTextures([
-  { id: 'grass', path: '/assets/images/textures/grass.jpg' },
   { id: 'ennemy', path: '/assets/images/textures/ennemy.png' },
   { id: 'diver', path: '/assets/images/textures/plongeurHead_front.png' },
   { id: 'commis', path: '/assets/images/textures/test.jpg' },
   { id: 'masterChef', path: '/assets/images/textures/sousChef_front.png' },
   { id: 'secondInCommand', path: '/assets/images/textures/test.jpg' },
   { id: 'chef', path: '/assets/images/textures/chef_front.png' },
+  { id: 'base', path: '/assets/images/textures/base.png' },
+  { id: 'square', path: '/assets/images/textures/square.png' },
+  { id: 'squareDeco', path: '/assets/images/textures/squareDeco.png' },
+  { id: 'path', path: '/assets/images/textures/path.png' },
+  { id: 'ennemy_front', path: '/assets/images/textures/ennemy_front.png' },
+  { id: 'ennemy_back', path: '/assets/images/textures/ennemy_back.png' },
+  { id: 'ennemy_right', path: '/assets/images/textures/ennemy_right.png' },
 ]);
 
 domready(() => {

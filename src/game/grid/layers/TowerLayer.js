@@ -8,7 +8,7 @@ export default class TowerLayer extends PIXI.Container {
 
     this.base = new Base();
     this.tileSize = tileSize;
-    this.addBase(width, height);
+    this.addBase();
     this.towers = [];
     this.canvas;
     this.stage = stage;
@@ -76,7 +76,7 @@ export default class TowerLayer extends PIXI.Container {
   }
 
   addBase() {
-    // TODO : MADJ
+    this.addChild(this.base);
   }
 
   onMouseMove(e, tower) {
