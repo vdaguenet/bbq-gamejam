@@ -98,7 +98,6 @@ export default class AbstractTower extends PIXI.Sprite {
     if (angle < 0) {
       angle += 2 * Math.PI;
     }
-    console.log(angle);
 
     if (angle >= Math.PI / 4 && angle < 3 * Math.PI / 4) {
       this.texture = this.textures.down;
