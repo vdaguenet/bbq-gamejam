@@ -11,6 +11,9 @@ import Layer from './grid/Layer';
 import TowerLayer from './grid/layers/TowerLayer';
 import level from './levels/level1.json';
 import { tileSize } from 'utils/levelUtils';
+import clone from 'clone';
+
+const MAX_ENEMIES = 7;
 
 class Game {
   constructor() {
@@ -22,9 +25,9 @@ class Game {
     this.renderer = PIXI.autoDetectRenderer(this.width, this.height, {
       view: document.getElementById('canvas'),
       backgroundColor: 0x1099bb,
+      antialias: true,
     });
     this.stage = new PIXI.Container();
-
     this.enemies = [];
     this.backgroundLayer = undefined;
 
@@ -35,12 +38,12 @@ class Game {
     console.log('Game - init', this.width);
     // TODO: init the game
     this.addLayers();
-    this.populateEnemies();
   }
 
   start(pseudo) {
     console.log('Game - start');
     Player.setPseudo(pseudo);
+    this.populateEnemies();
 
     this.update();
   }
@@ -57,13 +60,16 @@ class Game {
       x: 0,
       y: 5,
     };
-    let e;
 
-    for (let i = 0; i < 1; i++) {
-      e = new Enemy({ id: 'test', side: 'meat', 'currentTile': tileStart });
+    const enemiesInterval = setInterval(() => {
+      const e = new Enemy({ id: 'test' + Math.random(), side: 'meat', 'currentTile': clone(tileStart) });
       this.enemies.push(e);
       this.stage.addChild(e);
-    }
+
+      if (this.enemies.length >= MAX_ENEMIES) {
+        return clearInterval(enemiesInterval);
+      }
+    }, 1000);
   }
 
   addTower(item) {
@@ -91,9 +97,7 @@ class Game {
       this.lastUpdate = now;
 
       // TODO: update all the entities
-      this.enemies.forEach((e) => {
-        e.update(elapsed);
-      });
+      this.updateEnnemies(elapsed);
 
       this.checkCollision(Player.towers);
       this.render();
@@ -104,6 +108,20 @@ class Game {
     }
 
     raf(this.update);
+  }
+
+  updateEnnemies(elapsed) {
+    let i = 0;
+    this.enemies.forEach((e) => {
+      if (e.deletable) {
+        this.stage.removeChildAt(this.stage.getChildIndex(e));
+        this.enemies.splice(i, 1);
+        e.destroy();
+      } else {
+        e.update(elapsed);
+      }
+      i++;
+    });
   }
 
   checkCollision(towers) {
@@ -117,7 +135,7 @@ class Game {
             && bullet.y >= enemy.y
             && bullet.y <= enemy.y + enemy.height) {
             bullet.deletable = true;
-            enemy.deletable = true;
+            enemy.endureDamages(tower.stats.attack);
             // TODO add points ?
           }
         });

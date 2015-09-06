@@ -21,7 +21,7 @@ export default class Ennemy extends AbstractEnnemy {
       currentTile: options.currentTile,
     });
     this.anchor = { x: 0, y: 0.3 };
-    this.velocity = 50;
+    this.velocity = Math.random() * (50 - 30) + 30;
     this.side = options.side;
     this.direction = 'right';
     this.position.x = this.currentTile.x * tileSize;
@@ -93,9 +93,5 @@ export default class Ennemy extends AbstractEnnemy {
 
     this.direction = '';
     this.texture = Loader.getTexture('ennemy_right');
-  }
-
-  fight() {
-    console.log('Enemy - fight');
   }
 }
