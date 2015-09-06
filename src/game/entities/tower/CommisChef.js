@@ -1,5 +1,4 @@
 import AbstractTower from '../AbstractTower';
-import Loader from 'utils/Loader';
 /**
  * CommisChef class
  * Weaker tower
@@ -18,9 +17,15 @@ export default class CommisChef extends AbstractTower {
         radius: 1,
         maxTarget: 1,
         fireRate: 60,
+        textures: {
+          up: 'commis_up',
+          right: 'commis_right',
+          down: 'commis_down',
+          left: 'commis_left',
+        },
       },
       id: options.id,
-      texture: Loader.getTexture('commis'),
+      texture: 'commis_down',
     });
     // TODO define side
     this.side = options.side;

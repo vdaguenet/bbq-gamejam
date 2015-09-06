@@ -1,5 +1,4 @@
 import AbstractTower from '../AbstractTower';
-import Loader from 'utils/Loader';
 /**
  * Diver class
  * Weaker tower
@@ -18,12 +17,18 @@ export default class Diver extends AbstractTower {
         radius: 1,
         maxTarget: 1,
         fireRate: 60,
+        textures: {
+          up: 'diver_up',
+          right: 'diver_right',
+          down: 'diver_down',
+          left: 'diver_left',
+        },
       },
-      //id: options.id,
-      texture: Loader.getTexture('diver'),
+      // id: options.id,
+      texture: 'diver_down',
     });
     // TODO define side
-    //this.side = options.side;
+    // this.side = options.side;
 
     console.log(this.texture);
   }

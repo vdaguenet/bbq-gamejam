@@ -1,5 +1,4 @@
 import AbstractTower from '../AbstractTower';
-import Loader from 'utils/Loader';
 /**
  * MasterChef class
  * Master tower
@@ -19,9 +18,15 @@ export default class MasterChef extends AbstractTower {
         radius: 1,
         maxTarget: -1,
         fireRate: 60,
+        textures: {
+          up: 'masterChef_up',
+          right: 'masterChef_right',
+          down: 'masterChef_down',
+          left: 'masterChef_left',
+        },
       },
       id: options.id,
-      texture: Loader.getTexture('masterChef'),
+      texture: 'masterChef_down',
     });
     // TODO define side
     this.side = options.side;
