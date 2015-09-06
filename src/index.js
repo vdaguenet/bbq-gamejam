@@ -6,7 +6,7 @@ import Mediator from './utils/Mediator';
 
 import Game from './game/Game';
 // const game = new Game();
-// Game.appendTo(document.body);
+Game.appendTo(document.body);
 
 Loader.addTextures([
   // Diver
@@ -33,6 +33,10 @@ Loader.addTextures([
   { id: 'masterChef_back', path: '/assets/images/textures/masterChef_back.png' },
   { id: 'masterChef_left', path: '/assets/images/textures/masterChef_left.png' },
   { id: 'masterChef_right', path: '/assets/images/textures/masterChef_right.png' },
+  // Ammos
+  { id: 'masterChef_seed', path: '/assets/images/textures/masterChef_seed.png' },
+  { id: 'sousChef_bean', path: '/assets/images/textures/sousChef_bean.png' },
+  { id: 'diver_washer', path: '/assets/images/textures/diver_washer.png' },
   // Base
   { id: 'base', path: '/assets/images/textures/base.png' },
   // Ennemy
@@ -58,8 +62,6 @@ function bindEvents() {
   [].forEach.call(addTowerButtons, (addButton) => {
     on(addButton, 'click', addTower);
   });
-
-  Mediator.on('game:over', stopGame);
 
   Mediator.on('loader:complete', () => {
     Game.init();
@@ -88,9 +90,4 @@ function startGame() {
 
 function addTower() {
   Game.addTower(this);
-}
-
-function stopGame() {
-  const endOverlay = document.querySelector('.game-over-container');
-  endOverlay.className += ' active';
 }

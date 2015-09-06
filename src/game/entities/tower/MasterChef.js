@@ -25,6 +25,7 @@ export default class MasterChef extends AbstractTower {
         down: 'masterChef_front',
         left: 'masterChef_left',
         right: 'masterChef_right',
+        ammo: 'masterChef_seed',
       },
     });
 

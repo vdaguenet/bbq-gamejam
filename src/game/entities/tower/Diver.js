@@ -27,6 +27,7 @@ export default class Diver extends AbstractTower {
         down: 'diver_bottom_front',
         left: 'diver_bottom_left',
         right: 'diver_bottom_right',
+        ammo: 'diver_washer',
       },
     });
 

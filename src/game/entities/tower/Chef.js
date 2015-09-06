@@ -24,6 +24,7 @@ export default class Chef extends AbstractTower {
         down: 'chef_front',
         left: 'chef_left',
         right: 'chef_right',
+        ammo: '',
       },
     });
 

@@ -24,6 +24,7 @@ export default class SecondInCommand extends AbstractTower {
         down: 'sousChef_front',
         left: 'sousChef_left',
         right: 'sousChef_right',
+        ammo: 'sousChef_bean',
       },
     });
 
