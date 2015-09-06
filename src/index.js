@@ -10,6 +10,11 @@ Game.appendTo(document.body);
 
 Loader.addTextures([
   { id: 'ennemy', path: '/assets/images/textures/ennemy.png' },
+  { id: 'diver', path: '/assets/images/textures/plongeurHead_front.png' },
+  { id: 'commis', path: '/assets/images/textures/test.jpg' },
+  { id: 'masterChef', path: '/assets/images/textures/sousChef_front.png' },
+  { id: 'secondInCommand', path: '/assets/images/textures/test.jpg' },
+  { id: 'chef', path: '/assets/images/textures/chef_front.png' },
   { id: 'base', path: '/assets/images/textures/base.png' },
   { id: 'square', path: '/assets/images/textures/square.png' },
   { id: 'squareDeco', path: '/assets/images/textures/squareDeco.png' },

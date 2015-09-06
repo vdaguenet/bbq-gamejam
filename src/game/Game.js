@@ -80,7 +80,6 @@ class Game {
 
     switch(item.getAttribute('data-tower')) {
     case 'diver-tower':
-      console.log(this);
       this.towerLayer.addTower(new Diver(options), { x: this.mouseX, y: this.mouseY });
       break;
     case 'clerk-tower':
@@ -96,19 +95,6 @@ class Game {
       this.towerLayer.addTower(new Chef(options), { x: this.mouseX, y: this.mouseY });
       break;
     }
-  }
-
-  dragTower() {
-    // create a texture from an image path
-    const texture = PIXI.Texture.fromImage('assets/images/test.jpg');
-    // create a new Sprite using the texture
-    this.currentTowerMoved = new PIXI.Sprite(texture);
-    this.currentTowerMoved.position.x = this.mouseX;
-    this.currentTowerMoved.position.y = this.mouseY;
-
-    console.log(this.currentTowerMoved);
-
-    this.stage.addChild(this.currentTowerMoved);
   }
 
   moveTower(x, y) {

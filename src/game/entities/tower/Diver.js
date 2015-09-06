@@ -19,12 +19,13 @@ export default class Diver extends AbstractTower {
         maxTarget: 1,
         fireRate: 60,
       },
-      id: options.id,
+      //id: options.id,
       texture: Loader.getTexture('diver'),
     });
     // TODO define side
-    this.side = options.side;
+    //this.side = options.side;
 
+    console.log(this.texture);
   }
 
   update() {
