@@ -18,8 +18,13 @@ export function findNearestTile(x, y) {
 
   if (x > width || y > height) return;
 
+  const tileX = Math.floor(x / tileSize);
+  const tileY = Math.floor(y / tileSize);
+
+  if (tileIsWalkable(tileX, tileY)) return false;
+
   return {
-    x: Math.floor(x / tileSize),
-    y: Math.floor(y / tileSize),
+    x: tileX,
+    y: tileY,
   };
 }

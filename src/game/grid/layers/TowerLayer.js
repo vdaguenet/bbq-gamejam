@@ -33,6 +33,14 @@ export default class TowerLayer extends PIXI.Container {
     const yPosition = e.clientY - Game.renderer.view.getBoundingClientRect().top;
     const nearestTile = findNearestTile(xPosition, yPosition);
 
+    if (nearestTile === false) {
+      off(Game.renderer.view, 'mousemove', this.onMouseMove);
+      off(Game.renderer.view, 'click', this.placeTower);
+      this.movingTower = null;
+
+      return;
+    }
+
     this.movingTower.position.x = nearestTile.x * tileSize;
     this.movingTower.position.y = nearestTile.y * tileSize;
 
