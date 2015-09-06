@@ -42,7 +42,6 @@ class Game {
 
   start() {
     this.populateEnemies();
-    this.startMusic('start');
 
     this.update();
   }
@@ -50,19 +49,14 @@ class Game {
   stop() {
     raf.cancel(this.raf);
     this.isOver = true;
-    this.startMusic('stop');
+    this.startMusic();
   }
 
-  startMusic(toggle) {
-    if (toggle === 'start') {
-      this.audio = new Audio('assets/music/music.mp3');
-      this.audio.play();
-    }
-    else {
-      this.audio.pause();
-      this.audio = new Audio('assets/music/loose.mp3');
-      this.audio.play();
-    }
+  startMusic() {
+      window.audio.pause();
+      window.audio = new Audio('assets/music/loose.mp3');
+      window.audio.loop = true;
+      window.audio.play();
   }
 
   addLayers() {

@@ -50,6 +50,7 @@ Loader.addTextures([
 
 domready(() => {
   bindEvents();
+  startMusic();
   updateCash(Player.cash);
 });
 
@@ -70,6 +71,12 @@ function bindEvents() {
   Mediator.on('loader:complete', () => {
     Game.init();
   });
+}
+
+function startMusic() {
+  window.audio = new Audio('assets/music/music.mp3');
+  window.audio.loop = true;
+  window.audio.play();
 }
 
 function startGame() {
