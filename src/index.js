@@ -9,18 +9,33 @@ import Game from './game/Game';
 Game.appendTo(document.body);
 
 Loader.addTextures([
-  { id: 'diver', path: '/assets/images/textures/plongeurHead_front.png' },
+  // Diver
+  { id: 'diver_bottom_front', path: '/assets/images/textures/diver_bottom_front.png' },
+  { id: 'diver_bottom_back', path: '/assets/images/textures/diver_bottom_back.png' },
+  { id: 'diver_bottom_left', path: '/assets/images/textures/diver_bottom_left.png' },
+  { id: 'diver_bottom_right', path: '/assets/images/textures/diver_bottom_right.png' },
+  { id: 'diver_head_front', path: '/assets/images/textures/diver_head_front.png' },
+  { id: 'diver_head_back', path: '/assets/images/textures/diver_head_back.png' },
+  { id: 'diver_head_left', path: '/assets/images/textures/diver_head_left.png' },
+  { id: 'diver_head_right', path: '/assets/images/textures/diver_head_right.png' },
+  // Commis
   { id: 'commis', path: '/assets/images/textures/test.jpg' },
+  // Master Chef
   { id: 'masterChef', path: '/assets/images/textures/sousChef_front.png' },
+  // Second in Command
   { id: 'secondInCommand', path: '/assets/images/textures/test.jpg' },
+  // Chef
   { id: 'chef', path: '/assets/images/textures/chef_front.png' },
+  // Base
   { id: 'base', path: '/assets/images/textures/base.png' },
-  { id: 'square', path: '/assets/images/textures/square.png' },
-  { id: 'squareDeco', path: '/assets/images/textures/squareDeco.png' },
-  { id: 'path', path: '/assets/images/textures/path.png' },
+  // Ennemy
   { id: 'ennemy_front', path: '/assets/images/textures/ennemy_front.png' },
   { id: 'ennemy_back', path: '/assets/images/textures/ennemy_back.png' },
   { id: 'ennemy_right', path: '/assets/images/textures/ennemy_right.png' },
+  // Grid
+  { id: 'square', path: '/assets/images/textures/square.png' },
+  { id: 'squareDeco', path: '/assets/images/textures/squareDeco.png' },
+  { id: 'path', path: '/assets/images/textures/path.png' },
 ]);
 
 domready(() => {
