@@ -55,6 +55,10 @@ export default class TowerLayer extends PIXI.Container {
     this.addChild(this.base);
   }
 
+  getBase() {
+    return this.base;
+  }
+
   onMouseMove(e) {
     this.movingTower.position.x = e.x - (this.movingTower.width / 2);
     this.movingTower.position.y = e.y - (this.movingTower.height / 2);

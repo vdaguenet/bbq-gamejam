@@ -30,8 +30,9 @@ class Game {
     this.stage = new PIXI.Container();
     this.enemies = [];
     this.backgroundLayer = undefined;
-
+    this.isOver = false;
     this.lastUpdate = null;
+    this.raf;
   }
 
   init() {
@@ -48,6 +49,12 @@ class Game {
     this.update();
   }
 
+  stop() {
+    console.log('Game - stop');
+    raf.cancel(this.raf);
+    this.isOver = true;
+  }
+
   addLayers() {
     this.backgroundLayer = new Layer(this.width, this.height, level);
     this.towerLayer = new TowerLayer(this.width, this.height, 50, this.stage);
@@ -62,7 +69,12 @@ class Game {
     };
 
     const enemiesInterval = setInterval(() => {
-      const e = new Enemy({ id: 'test' + Math.random(), side: 'meat', 'currentTile': clone(tileStart) });
+      const e = new Enemy({
+        id: 'test' + Math.random(),
+        side: 'meat',
+        currentTile: clone(tileStart),
+        target: this.towerLayer.getBase(),
+      });
       this.enemies.push(e);
       this.stage.addChild(e);
 
@@ -90,6 +102,8 @@ class Game {
   }
 
   update() {
+    if (this.isOver) return;
+
     const now = window.Date.now();
 
     if (this.lastUpdate) {
@@ -107,7 +121,7 @@ class Game {
       this.lastUpdate = now;
     }
 
-    raf(this.update);
+    this.raf = raf(this.update);
   }
 
   updateEnnemies(elapsed) {
