@@ -43,8 +43,11 @@ export default class AbstractTower extends PIXI.Sprite {
   update() {
     console.warn('You should override update method on', Object.getPrototypeOf(this));
 
-    this.rotateTower(this.currentTargets);
-    this.applyAttack(this.currentTargets);
+    this.currentTargets.forEach((target) => {
+      this.rotateTower(target);
+      this.applyAttack(target);
+    });
+
     this.deleteOldBullets();
   }
 
@@ -57,7 +60,7 @@ export default class AbstractTower extends PIXI.Sprite {
   }
 
   attack(target, vector) {
-    if (Math.random < this.stats.precision) {
+    if (Math.random() < this.stats.precision) {
       target.hp -= this.stats.attack;
       this.addBullet(target.position, vector);
     }

@@ -73,18 +73,27 @@ class Game {
   }
 
   addTower(item) {
+    let tower = null;
     switch(item.getAttribute('data-tower')) {
     case 'diver-tower':
-      this.towerLayer.addTower(new Diver());
-      break;
-    case 'master-tower':
-      this.towerLayer.addTower(new MasterChef());
+      tower = new Diver();
+      this.towerLayer.addTower(tower);
+      Player.addTower(tower);
       break;
     case 'second-tower':
-      this.towerLayer.addTower(new SecondInCommand());
+      tower = new SecondInCommand();
+      this.towerLayer.addTower(tower);
+      Player.addTower(tower);
       break;
     case 'chief-tower':
-      this.towerLayer.addTower(new Chef());
+      tower = new Chef();
+      this.towerLayer.addTower(tower);
+      Player.addTower(tower);
+      break;
+    case 'master-tower':
+      tower = new MasterChef();
+      this.towerLayer.addTower(tower);
+      Player.addTower(tower);
       break;
     }
   }
@@ -100,6 +109,7 @@ class Game {
       this.updateEnnemies(elapsed);
 
       this.checkCollision(Player.towers);
+      this.checkTargets(Player.towers);
       this.render();
     }
     else {
@@ -117,17 +127,32 @@ class Game {
         this.stage.removeChildAt(this.stage.getChildIndex(e));
         this.enemies.splice(i, 1);
         e.destroy();
-      } else {
+      }
+      else {
         e.update(elapsed);
       }
       i++;
     });
   }
 
+  checkTargets(towers) {
+    if (!towers || towers.length <= 0) return;
+
+    towers.forEach((tower) => {
+      tower.currentTargets = [];
+      this.enemies.forEach((ennemy) => {
+        if (tower.getDistance(ennemy) < tileSize * tower.stats.radius) {
+          tower.currentTargets.push(ennemy);
+          tower.update();
+        }
+      });
+    });
+  }
+
   checkCollision(towers) {
     if (!towers || towers.length <= 0) return;
 
-    towers.foreEach((tower) => {
+    towers.forEach((tower) => {
       this.enemies.forEach((enemy) => {
         tower.bullets.forEach((bullet) => {
           if (bullet.x >= enemy.x

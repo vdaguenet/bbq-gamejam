@@ -30,8 +30,4 @@ export default class SecondInCommand extends AbstractTower {
     this.anchor.set(0, 0.52);
   }
 
-  update() {
-    console.warn('You should override update method on', Object.getPrototypeOf(this));
-  }
-
 }

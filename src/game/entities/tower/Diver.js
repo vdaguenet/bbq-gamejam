@@ -38,10 +38,6 @@ export default class Diver extends AbstractTower {
 
   }
 
-  update() {
-    console.warn('You should override update method on', Object.getPrototypeOf(this));
-  }
-
   turnleft() {
     this.head.anchor.set(-0.2, 0.5);
   }

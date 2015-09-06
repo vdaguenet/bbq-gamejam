@@ -32,8 +32,4 @@ export default class MasterChef extends AbstractTower {
 
   }
 
-  update() {
-    console.warn('You should override update method on', Object.getPrototypeOf(this));
-  }
-
 }
